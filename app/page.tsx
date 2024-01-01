@@ -1,10 +1,9 @@
+import SearchBar from "@/components/SearchBar";
+
 export default function Home() {
   return (
-    <>
-      <h3 className="text-white">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta odio
-        earum ex sint aut saepe perspiciatis itaque atque facere harum!
-      </h3>
-    </>
+    <div className="px-4 py-6 md:px-6">
+      <SearchBar placeholder="Search for movies or TV series" />
+    </div>
   );
 }
