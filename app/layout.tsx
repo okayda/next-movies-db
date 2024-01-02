@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -19,8 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.className} antialiased`}>
-        <Nav />
-        <main>{children}</main>
+        <div className="mx-auto max-w-xxl px-4 py-6 md:px-6">
+          <Nav />
+
+          <main>{children}</main>
+
+          <Footer />
+        </div>
       </body>
     </html>
   );
