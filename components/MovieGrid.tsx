@@ -1,13 +1,28 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+
+import clsx from "clsx";
 
 export default function MovieGrid({
   title = "Anything",
-  movie = null,
+  queryKey,
+  queryFn,
+  movieData,
 }: {
   title: string;
-  movie: string | null;
+  queryKey: string;
+  queryFn: any;
+  movieData: any;
 }) {
+  const { data } = useQuery({
+    queryKey: [queryKey],
+    queryFn: queryFn,
+    initialData: movieData,
+  });
+
   return (
     <div className="pt-6 sm:pt-10 md:pt-12 lg:pt-16">
       <div className="flex items-center justify-between pb-2 md:pb-5">
@@ -23,54 +38,21 @@ export default function MovieGrid({
         </Link>
       </div>
 
-      <div className="xxl:grid-cols-4 grid grid-cols-2 gap-4 xs:grid-cols-3">
-        <Image
-          src={`/assets/thumbnails/${movie}/regular/medium.jpg`}
-          alt="Movie"
-          width={160}
-          height={100}
-          className="h-full w-full rounded-md object-fill"
-        />
-
-        <Image
-          src={`/assets/thumbnails/${movie}/regular/medium.jpg`}
-          alt="Movie"
-          width={160}
-          height={100}
-          className="h-full w-full rounded-md object-fill"
-        />
-
-        <Image
-          src={`/assets/thumbnails/${movie}/regular/medium.jpg`}
-          alt=""
-          width={160}
-          height={100}
-          className="h-full w-full rounded-md object-fill"
-        />
-
-        <Image
-          src={`/assets/thumbnails/${movie}/regular/medium.jpg`}
-          alt="Movie"
-          width={160}
-          height={100}
-          className="h-full w-full rounded-md object-fill"
-        />
-
-        <Image
-          src={`/assets/thumbnails/${movie}/regular/medium.jpg`}
-          alt=""
-          width={160}
-          height={100}
-          className="xxl:col-span-2 xxl:h-[240px] h-full w-full rounded-md object-fill"
-        />
-
-        <Image
-          src={`/assets/thumbnails/${movie}/regular/medium.jpg`}
-          alt="Movie"
-          width={160}
-          height={100}
-          className="xxl:col-span-2 xxl:h-[240px] h-full w-full rounded-md object-fill"
-        />
+      <div className="grid grid-cols-2 gap-4 xs:grid-cols-3 xxl:grid-cols-4">
+        {data.map((movie: any, i: any) => {
+          return (
+            <Image
+              key={movie.id}
+              src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+              alt="Movie"
+              width={854}
+              height={480}
+              className={clsx("object-fit h-full w-full rounded-md", {
+                "xxl:col-span-2 xxl:h-[320px]": i >= 4,
+              })}
+            />
+          );
+        })}
       </div>
     </div>
   );
