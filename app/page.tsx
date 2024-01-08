@@ -1,6 +1,6 @@
 import SearchBar from "@/components/SearchBar";
-import LoadMoreGrid from "@/components/LoadMoreGrid";
-import MovieCarousel from "@/components/MovieCarousel";
+import LoadMoreGrid from "@/app/(home)/LoadMoreGrid";
+import MovieCarousel from "@/app/(home)/MovieCarousel";
 import { fetchMoviesTrending } from "@/lib/server/action";
 
 export default async function Home() {

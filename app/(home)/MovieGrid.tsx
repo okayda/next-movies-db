@@ -6,6 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 
 import clsx from "clsx";
 
+import { motion } from "framer-motion";
+
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
 export default function MovieGrid({
   title = "Anything",
   queryKey,
@@ -43,20 +50,33 @@ export default function MovieGrid({
         </div>
 
         <div className="grid grid-cols-2 gap-4 xs:grid-cols-3 xxl:grid-cols-4">
-          {data.content.map((movie: any, i: any) => {
+          {data.content.map((movie: any, i: number) => {
             return (
-              <Image
+              <motion.div
                 key={movie.id}
-                src={movie.img}
-                alt={movie.title}
-                width={854}
-                height={480}
-                className={clsx("object-fit h-full w-full rounded-md", {
+                variants={variants}
+                initial="hidden"
+                animate="visible"
+                transition={{
+                  delay: i * 0.25,
+                  ease: "easeInOut",
+                  duration: 0.5,
+                }}
+                viewport={{ amount: 0 }}
+                className={clsx({
                   "xxl:col-span-2 xxl:h-[320px]": i >= 4,
                 })}
-                placeholder="blur"
-                blurDataURL={data.blurImgs[i]}
-              />
+              >
+                <Image
+                  src={movie.img}
+                  alt={movie.title}
+                  width={854}
+                  height={480}
+                  className="object-fit h-full w-full rounded-md"
+                  placeholder="blur"
+                  blurDataURL={data.blurImgs[i]}
+                />
+              </motion.div>
             );
           })}
         </div>

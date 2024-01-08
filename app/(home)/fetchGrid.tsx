@@ -1,10 +1,11 @@
-import MovieGrid from "@/components/MovieGrid";
+import MovieGrid from "@/app/(home)/MovieGrid";
+
 import {
   fetchMoviesPlaying,
   fetchMoviesTopRated,
   fetchMoviesUpcoming,
   fetchMoviesPopular,
-} from "./action";
+} from "../../lib/server/action";
 
 export const moviesPopularGrid = async function () {
   const popularMovies = await fetchMoviesPopular();

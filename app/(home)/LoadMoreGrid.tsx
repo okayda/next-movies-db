@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import { fetchLoadGrid } from "@/lib/server/actionGrid";
+import { fetchLoadGrid } from "@/app/(home)/fetchGrid";
 
 let page = 0;
 
