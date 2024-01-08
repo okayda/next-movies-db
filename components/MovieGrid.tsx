@@ -43,17 +43,19 @@ export default function MovieGrid({
         </div>
 
         <div className="grid grid-cols-2 gap-4 xs:grid-cols-3 xxl:grid-cols-4">
-          {data.map((movie: any, i: any) => {
+          {data.content.map((movie: any, i: any) => {
             return (
               <Image
                 key={movie.id}
-                src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                alt="Movie"
+                src={movie.img}
+                alt={movie.title}
                 width={854}
                 height={480}
                 className={clsx("object-fit h-full w-full rounded-md", {
                   "xxl:col-span-2 xxl:h-[320px]": i >= 4,
                 })}
+                placeholder="blur"
+                blurDataURL={data.blurImgs[i]}
               />
             );
           })}

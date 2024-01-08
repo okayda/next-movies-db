@@ -6,8 +6,8 @@ export const optionConfig = {
   },
 };
 
-export const MOVIE_IMG_API = (movie_id: number) =>
-  `https://api.themoviedb.org/3/movie/${movie_id}/images`;
+export const MOVIE_IMG_URL = (imgId: number) =>
+  `https://image.tmdb.org/t/p/original${imgId}`;
 
 export const MOVIES_POPULAR_API = "https://api.themoviedb.org/3/movie/popular";
 
@@ -19,3 +19,6 @@ export const MOVIES_TOP_RATED_API =
 
 export const MOVIES_UPCOMING_API =
   "https://api.themoviedb.org/3/movie/upcoming";
+
+export const MOVIES_TRENDING_API =
+  "https://api.themoviedb.org/3/trending/movie/week";

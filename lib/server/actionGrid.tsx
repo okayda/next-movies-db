@@ -1,8 +1,8 @@
 import MovieGrid from "@/components/MovieGrid";
 import {
-  fetchMoviePlaying,
-  fetchMovieTopRated,
-  fetchMovieUpcoming,
+  fetchMoviesPlaying,
+  fetchMoviesTopRated,
+  fetchMoviesUpcoming,
   fetchMoviesPopular,
 } from "./action";
 
@@ -21,13 +21,13 @@ export const moviesPopularGrid = async function () {
 };
 
 export const moviesPlayingGrid = async function () {
-  const nowPlayingMovies = await fetchMoviePlaying();
+  const nowPlayingMovies = await fetchMoviesPlaying();
 
   return (
     <MovieGrid
       key="now-playing-movies"
       title="Now Playing"
-      queryFn={fetchMoviePlaying}
+      queryFn={fetchMoviesPlaying}
       queryKey="now-playing-movies"
       movieData={nowPlayingMovies}
     />
@@ -35,13 +35,13 @@ export const moviesPlayingGrid = async function () {
 };
 
 export const moviesTopRatedGrid = async function () {
-  const topRatedMovies = await fetchMovieTopRated();
+  const topRatedMovies = await fetchMoviesTopRated();
 
   return (
     <MovieGrid
       key="top-rated-movies"
       title="Top Rated"
-      queryFn={fetchMovieTopRated}
+      queryFn={fetchMoviesTopRated}
       queryKey="top-rated-movies"
       movieData={topRatedMovies}
     />
@@ -49,13 +49,13 @@ export const moviesTopRatedGrid = async function () {
 };
 
 export const moviesUpcomingGrid = async function () {
-  const upcomingMovies = await fetchMovieUpcoming();
+  const upcomingMovies = await fetchMoviesUpcoming();
 
   return (
     <MovieGrid
       key="upcoming-movies"
       title="Upcoming"
-      queryFn={fetchMovieUpcoming}
+      queryFn={fetchMoviesUpcoming}
       queryKey="upcoming-movies"
       movieData={upcomingMovies}
     />

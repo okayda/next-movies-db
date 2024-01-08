@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+
 import Autoplay from "embla-carousel-autoplay";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -11,8 +13,23 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useQuery } from "@tanstack/react-query";
 
-export default function MovieCarousel() {
+export default function MovieCarousel({
+  queryKey,
+  queryFn,
+  moviesData,
+}: {
+  queryKey: string;
+  queryFn: any;
+  moviesData: any;
+}) {
+  const { data } = useQuery({
+    queryKey: [queryKey],
+    queryFn: queryFn,
+    initialData: moviesData,
+  });
+
   return (
     <section>
       <div className="pt-6 md:pt-10">
@@ -41,27 +58,33 @@ export default function MovieCarousel() {
             }}
             plugins={[
               Autoplay({
-                delay: 2500,
+                delay: 3500,
               }),
             ]}
           >
-            <CarouselContent className="-ml-1 w-full">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <CarouselItem
-                  key={index}
-                  className="h-[180px] pl-1 sm:h-[250px] md:h-[200px] md:basis-1/2 xl:basis-1/3"
-                >
-                  <div className="h-full p-1">
-                    <Card className="h-full">
-                      <CardContent>
-                        <span className="text-2xl font-semibold">
-                          {index + 1}
-                        </span>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CarouselItem>
-              ))}
+            <CarouselContent className="-ml-1 w-full ">
+              {data.content.map((movie: any, i: number) => {
+                return (
+                  <CarouselItem
+                    key={movie.id}
+                    className="h-[180px] pl-1 sm:h-[250px] md:h-[200px] md:basis-1/2 xl:basis-1/3"
+                  >
+                    <div className="h-full p-1">
+                      <Card className="bg-red-[#5A698F] h-full overflow-hidden rounded-md border-none">
+                        <Image
+                          src={movie.img}
+                          alt={movie.title || "Movie"}
+                          width={320}
+                          height={190}
+                          className="h-full w-full"
+                          placeholder="blur"
+                          blurDataURL={data.blurImgs[i]}
+                        />
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                );
+              })}
             </CarouselContent>
 
             <div className="hidden xs:block">
