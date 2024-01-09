@@ -1,8 +1,5 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
 
 import clsx from "clsx";
 
@@ -15,21 +12,11 @@ const variants = {
 
 export default function MovieGrid({
   title = "Anything",
-  queryKey,
-  queryFn,
-  movieData,
+  data,
 }: {
   title: string;
-  queryKey: string;
-  queryFn: any;
-  movieData: any;
+  data: any;
 }) {
-  const { data } = useQuery({
-    queryKey: [queryKey],
-    queryFn: queryFn,
-    initialData: movieData,
-  });
-
   return (
     <section>
       <div className="pt-6 sm:pt-10 md:pt-12 lg:pt-16">
@@ -63,7 +50,7 @@ export default function MovieGrid({
                   duration: 0.5,
                 }}
                 viewport={{ amount: 0 }}
-                className={clsx({
+                className={clsx("h-full w-full overflow-hidden rounded-md ", {
                   "xxl:col-span-2 xxl:h-[320px]": i >= 4,
                 })}
               >
@@ -72,7 +59,7 @@ export default function MovieGrid({
                   alt={movie.title}
                   width={854}
                   height={480}
-                  className="object-fit h-full w-full rounded-md"
+                  className="object-fit h-full w-full transform transition-transform duration-300 hover:scale-110"
                   placeholder="blur"
                   blurDataURL={data.blurImgs[i]}
                 />

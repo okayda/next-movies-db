@@ -13,23 +13,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useQuery } from "@tanstack/react-query";
 
-export default function MovieCarousel({
-  queryKey,
-  queryFn,
-  moviesData,
-}: {
-  queryKey: string;
-  queryFn: any;
-  moviesData: any;
-}) {
-  const { data } = useQuery({
-    queryKey: [queryKey],
-    queryFn: queryFn,
-    initialData: moviesData,
-  });
-
+export default function MovieCarousel({ data }: { data: any }) {
   return (
     <section>
       <div className="pt-6 md:pt-10">

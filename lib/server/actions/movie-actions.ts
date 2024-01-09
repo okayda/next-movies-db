@@ -1,31 +1,38 @@
 "use server";
 
+import { addBlurredUrls } from "../../utils";
+
 import {
   optionConfig,
+  REVALIDATE_MOVIES_TRENDING,
+  REVALIDATE_MOVIES,
   MOVIE_IMG_URL,
   MOVIES_POPULAR_API,
   MOVIES_PLAYING_API,
   MOVIES_TOP_RATED_API,
   MOVIES_UPCOMING_API,
   MOVIES_TRENDING_API,
-} from "./config";
+} from "../config";
 
-import { addBlurredUrls } from "../utils";
-
-export const fetchMoviesPopular = async function () {
+export const fetchMoviesTrending = async function () {
   try {
-    const res = await fetch(MOVIES_POPULAR_API, optionConfig);
+    const res = await fetch(MOVIES_TRENDING_API, {
+      ...optionConfig,
+      next: {
+        revalidate: REVALIDATE_MOVIES_TRENDING,
+      },
+    });
 
     if (!res.ok) throw Error;
 
     const { results } = await res.json();
 
-    const imgsUrls: string[] = [];
+    const imgUrls: string[] = [];
 
     const formattedData = results.slice(0, 6).map((movie: any) => {
       const img = MOVIE_IMG_URL(movie.backdrop_path);
 
-      imgsUrls.push(img);
+      imgUrls.push(img);
 
       return {
         id: movie.id,
@@ -35,7 +42,43 @@ export const fetchMoviesPopular = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgsUrls);
+    const blurredUrls = await addBlurredUrls(imgUrls);
+
+    return { content: formattedData, blurImgs: blurredUrls };
+  } catch (error) {
+    console.log("Fecth movie trending have a: ", error);
+  }
+};
+
+export const fetchMoviesPopular = async function () {
+  try {
+    const res = await fetch(MOVIES_POPULAR_API, {
+      ...optionConfig,
+      next: {
+        revalidate: REVALIDATE_MOVIES,
+      },
+    });
+
+    if (!res.ok) throw Error;
+
+    const { results } = await res.json();
+
+    const imgUrls: string[] = [];
+
+    const formattedData = results.slice(0, 6).map((movie: any) => {
+      const img = MOVIE_IMG_URL(movie.backdrop_path);
+
+      imgUrls.push(img);
+
+      return {
+        id: movie.id,
+        title: movie.title,
+        release_date: movie.release_date,
+        img,
+      };
+    });
+
+    const blurredUrls = await addBlurredUrls(imgUrls);
 
     return { content: formattedData, blurImgs: blurredUrls };
   } catch (error) {
@@ -45,18 +88,23 @@ export const fetchMoviesPopular = async function () {
 
 export const fetchMoviesPlaying = async function () {
   try {
-    const res = await fetch(MOVIES_PLAYING_API, optionConfig);
+    const res = await fetch(MOVIES_PLAYING_API, {
+      ...optionConfig,
+      next: {
+        revalidate: REVALIDATE_MOVIES,
+      },
+    });
 
     if (!res.ok) throw Error;
 
     const { results } = await res.json();
 
-    const imgsUrls: string[] = [];
+    const imgUrls: string[] = [];
 
     const formattedData = results.slice(0, 6).map((movie: any) => {
       const img = MOVIE_IMG_URL(movie.backdrop_path);
 
-      imgsUrls.push(img);
+      imgUrls.push(img);
 
       return {
         id: movie.id,
@@ -66,7 +114,7 @@ export const fetchMoviesPlaying = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgsUrls);
+    const blurredUrls = await addBlurredUrls(imgUrls);
 
     return { content: formattedData, blurImgs: blurredUrls };
   } catch (error) {
@@ -76,18 +124,23 @@ export const fetchMoviesPlaying = async function () {
 
 export const fetchMoviesTopRated = async function () {
   try {
-    const res = await fetch(MOVIES_TOP_RATED_API, optionConfig);
+    const res = await fetch(MOVIES_TOP_RATED_API, {
+      ...optionConfig,
+      next: {
+        revalidate: REVALIDATE_MOVIES,
+      },
+    });
 
     if (!res.ok) throw Error;
 
     const { results } = await res.json();
 
-    const imgsUrls: string[] = [];
+    const imgUrls: string[] = [];
 
     const formattedData = results.slice(0, 6).map((movie: any) => {
       const img = MOVIE_IMG_URL(movie.backdrop_path);
 
-      imgsUrls.push(img);
+      imgUrls.push(img);
 
       return {
         id: movie.id,
@@ -97,7 +150,7 @@ export const fetchMoviesTopRated = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgsUrls);
+    const blurredUrls = await addBlurredUrls(imgUrls);
 
     return { content: formattedData, blurImgs: blurredUrls };
   } catch (error) {
@@ -107,18 +160,23 @@ export const fetchMoviesTopRated = async function () {
 
 export const fetchMoviesUpcoming = async function () {
   try {
-    const res = await fetch(MOVIES_UPCOMING_API, optionConfig);
+    const res = await fetch(MOVIES_UPCOMING_API, {
+      ...optionConfig,
+      next: {
+        revalidate: REVALIDATE_MOVIES,
+      },
+    });
 
     if (!res.ok) throw Error;
 
     const { results } = await res.json();
 
-    const imgsUrls: string[] = [];
+    const imgUrls: string[] = [];
 
     const formattedData = results.slice(0, 6).map((movie: any) => {
       const img = MOVIE_IMG_URL(movie.backdrop_path);
 
-      imgsUrls.push(img);
+      imgUrls.push(img);
 
       return {
         id: movie.id,
@@ -128,41 +186,10 @@ export const fetchMoviesUpcoming = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgsUrls);
+    const blurredUrls = await addBlurredUrls(imgUrls);
 
     return { content: formattedData, blurImgs: blurredUrls };
   } catch (error) {
     console.log("Fecth movie upcoming have a: ", error);
-  }
-};
-
-export const fetchMoviesTrending = async function () {
-  try {
-    const res = await fetch(MOVIES_TRENDING_API, optionConfig);
-
-    if (!res.ok) throw Error;
-
-    const { results } = await res.json();
-
-    const imgsUrls: string[] = [];
-
-    const formattedData = results.slice(0, 6).map((movie: any) => {
-      const img = MOVIE_IMG_URL(movie.backdrop_path);
-
-      imgsUrls.push(img);
-
-      return {
-        id: movie.id,
-        title: movie.title,
-        release_date: movie.release_date,
-        img,
-      };
-    });
-
-    const blurredUrls = await addBlurredUrls(imgsUrls);
-
-    return { content: formattedData, blurImgs: blurredUrls };
-  } catch (error) {
-    console.log("Fecth movie trending have a: ", error);
   }
 };

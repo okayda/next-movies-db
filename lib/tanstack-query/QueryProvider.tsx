@@ -14,7 +14,7 @@ export default function QueryProvider({
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 6 * 60 * 60 * 1000, // 6 Hours
+            staleTime: 6 * 60 * 60 * 1000,
           },
         },
       }),

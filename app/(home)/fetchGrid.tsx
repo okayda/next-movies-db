@@ -1,23 +1,18 @@
-import MovieGrid from "@/app/(home)/MovieGrid";
-
 import {
   fetchMoviesPlaying,
   fetchMoviesTopRated,
   fetchMoviesUpcoming,
   fetchMoviesPopular,
-} from "../../lib/server/action";
+} from "../../lib/server/actions/movie-actions";
+import { fetchTvTrending } from "@/lib/server/actions/tv-actions";
+
+import MovieGrid from "@/app/(home)/MovieGrid";
 
 export const moviesPopularGrid = async function () {
   const popularMovies = await fetchMoviesPopular();
 
   return (
-    <MovieGrid
-      key="popular-movies"
-      title="Popular"
-      queryFn={popularMovies}
-      queryKey="popular-movies"
-      movieData={popularMovies}
-    />
+    <MovieGrid key="popular-movies" title="Popular" data={popularMovies} />
   );
 };
 
@@ -28,9 +23,7 @@ export const moviesPlayingGrid = async function () {
     <MovieGrid
       key="now-playing-movies"
       title="Now Playing"
-      queryFn={fetchMoviesPlaying}
-      queryKey="now-playing-movies"
-      movieData={nowPlayingMovies}
+      data={nowPlayingMovies}
     />
   );
 };
@@ -39,13 +32,7 @@ export const moviesTopRatedGrid = async function () {
   const topRatedMovies = await fetchMoviesTopRated();
 
   return (
-    <MovieGrid
-      key="top-rated-movies"
-      title="Top Rated"
-      queryFn={fetchMoviesTopRated}
-      queryKey="top-rated-movies"
-      movieData={topRatedMovies}
-    />
+    <MovieGrid key="top-rated-movies" title="Top Rated" data={topRatedMovies} />
   );
 };
 
@@ -53,13 +40,15 @@ export const moviesUpcomingGrid = async function () {
   const upcomingMovies = await fetchMoviesUpcoming();
 
   return (
-    <MovieGrid
-      key="upcoming-movies"
-      title="Upcoming"
-      queryFn={fetchMoviesUpcoming}
-      queryKey="upcoming-movies"
-      movieData={upcomingMovies}
-    />
+    <MovieGrid key="upcoming-movies" title="Upcoming" data={upcomingMovies} />
+  );
+};
+
+export const seriesTrendingCarousel = async function () {
+  const upcomingMovies = await fetchTvTrending();
+
+  return (
+    <MovieGrid key="upcoming-movies" title="Upcoming" data={upcomingMovies} />
   );
 };
 

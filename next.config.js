@@ -1,8 +1,25 @@
 /** @type {import('next').NextConfig} */
-
+// image.tmdb.org/t/p
 const nextConfig = {
   images: {
-    domains: ["tmdb.org", "themoviedb.org", "image.tmdb.org"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "tmdb.org",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "themoviedb.org",
+        pathname: "/**",
+      },
+
+      {
+        protocol: "https",
+        hostname: "image.tmdb.org",
+        pathname: "/**",
+      },
+    ],
   },
 };
 
