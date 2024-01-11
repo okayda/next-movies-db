@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer>
-      <div className="flex flex-col gap-2">
-        <span className="text-xs font-bold  tracking-wider text-[#5A698F] xs:text-sm">
+    <footer className="absolute bottom-0 left-0 w-full">
+      <div className="relative flex flex-col items-center gap-3 p-3 py-5 md:p-6">
+        <span className="text-xs  font-bold tracking-wider text-[#5A698F] xs:text-sm">
           Powered by
         </span>
 

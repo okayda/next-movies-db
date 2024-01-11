@@ -6,10 +6,9 @@ export const optionConfig = {
   },
 };
 
-// REVALIDATE: make another re-fetch again once the time is expired
+// REVALIDATE: Another re-fetch again once the time is expired and saved it to cache again
+export const REVALIDATE_NORMAL = 14400; // 4 Hours
 export const REVALIDATE_MOVIES_TRENDING = 3600; // 1 Hour
-export const REVALIDATE_MOVIES = 14400; // 4 Hours
-
 export const REVALIDATE_TV_TRENDING = 86400; // 24 Hours
 
 // TMDB APIs
@@ -21,9 +20,6 @@ export const MOVIES_TRENDING_API =
 
 export const MOVIES_POPULAR_API = "https://api.themoviedb.org/3/movie/popular";
 
-export const MOVIES_PLAYING_API =
-  "https://api.themoviedb.org/3/movie/now_playing";
-
 export const MOVIES_TOP_RATED_API =
   "https://api.themoviedb.org/3/movie/top_rated";
 
@@ -31,3 +27,9 @@ export const MOVIES_UPCOMING_API =
   "https://api.themoviedb.org/3/movie/upcoming";
 
 export const TV_TRENDING_API = "https://api.themoviedb.org/3/trending/tv/day";
+
+export const TV_POPULAR_API = "https://api.themoviedb.org/3/tv/popular";
+
+export const TV_ONAIR__API = "https://api.themoviedb.org/3/tv/on_the_air";
+
+export const TV_TOP_RATED_API = "https://api.themoviedb.org/3/tv/top_rated";

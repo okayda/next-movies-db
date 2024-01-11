@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-// image.tmdb.org/t/p
+
 const nextConfig = {
   images: {
     remotePatterns: [

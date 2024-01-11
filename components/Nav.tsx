@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default function Nav() {
   return (
-    <header className="md:p-6">
-      <div className="flex items-center justify-between bg-[#171E31] p-5 md:rounded-md xl:hidden">
+    <header className="pb-6 md:py-6 md:pb-12">
+      <div className="shadow-light flex items-center justify-between rounded-md bg-[#1c1c1c] bg-opacity-30 p-5 backdrop-blur-lg backdrop-filter xl:hidden">
         <Link href="/">
           <Image src="/assets/logo.svg" width={24} height={19} alt="" />
         </Link>

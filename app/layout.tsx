@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.className} antialiased`}>
-        <div className="mx-auto max-w-xxl px-4 py-6 md:px-6">
+        <div className="mx-auto max-w-xxl px-3 py-6 md:px-6 ">
           <Nav />
 
           <main>
