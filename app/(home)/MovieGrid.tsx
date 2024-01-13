@@ -70,8 +70,8 @@ export default function MovieGrid({
                   width={854}
                   height={480}
                   className="h-full w-full transform object-cover transition-transform duration-300 hover:scale-110"
-                  // placeholder="blur"
-                  // blurDataURL={data.blurImgs[i]}
+                  placeholder="blur"
+                  blurDataURL={data.blurImgs[i]}
                 />
               </motion.div>
             );

@@ -6,9 +6,9 @@ import fetchMovieGrid from "@/app/(home)/fetchMovieGrid";
 import Spinner from "@/components/Spinner";
 
 const homePageGridSection = 6;
-let page = 0;
 
 export default function LoadMoreGrid() {
+  const [page, setPage] = useState(0);
   const ref = useRef(null);
   const inView = useInView(ref);
   const [data, setData] = useState<any[]>([]);
@@ -23,9 +23,7 @@ export default function LoadMoreGrid() {
           const movieGrid = await fetchMovieGrid(page);
           setData((prevData) => [...prevData, movieGrid]);
 
-          console.log(page);
-
-          ++page;
+          setPage((prev) => (prev += 1));
         } catch (error) {
           console.error("Fetch grid movie: ", error);
         } finally {

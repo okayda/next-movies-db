@@ -80,8 +80,8 @@ export default function MovieCarousel({
                             width={320}
                             height={190}
                             className="h-full w-full"
-                            // placeholder="blur"
-                            // blurDataURL={data.blurImgs[i]}
+                            placeholder="blur"
+                            blurDataURL={data.blurImgs[i]}
                           />
                         </Card>
                       </div>

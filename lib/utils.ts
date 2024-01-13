@@ -11,6 +11,7 @@ export async function getBase64(imgUrl: any) {
   NEXT_PUBLIC_DOMAIN env variable represent the deployed web URL 
   and should be provided in the .env file after deployment
   */
+
   const baseUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000/"
