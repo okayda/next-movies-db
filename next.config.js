@@ -20,6 +20,8 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+
+    minimumCacheTTL: 60 * 60 * 24 * 30, // Image cache for 30 days
   },
 };
 

@@ -1,5 +1,5 @@
 import { fetchMovieGenres } from "@/lib/server/actions/genres-actions";
-import CardsGrid from "./CardsGrid";
+import CardsGrid from "../../components/CardsGrid";
 
 export default async function page() {
   const movieGenres = await fetchMovieGenres();

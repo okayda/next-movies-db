@@ -1,14 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-
 import clsx from "clsx";
-
-import { motion } from "framer-motion";
-
-const variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
+import FadeDiv from "@/components/FadeDiv";
 
 export default function MovieGrid({
   title = "Anything",
@@ -48,17 +41,10 @@ export default function MovieGrid({
         <div className="grid grid-cols-2 gap-3 xs:grid-cols-3 xxl:grid-cols-4">
           {data.content.map((movie: any, i: number) => {
             return (
-              <motion.div
+              <FadeDiv
                 key={movie.id}
-                variants={variants}
-                initial="hidden"
-                animate="visible"
-                transition={{
-                  delay: i * 0.25,
-                  ease: "easeInOut",
-                  duration: 0.5,
-                }}
-                viewport={{ amount: 0 }}
+                index={i}
+                duration={0.5}
                 className={clsx("h-full w-full overflow-hidden rounded-md ", {
                   "xxl:h-[160px]": i < 4,
                   "xxl:col-span-2 xxl:h-[320px]": i >= 4,
@@ -73,7 +59,7 @@ export default function MovieGrid({
                   placeholder="blur"
                   blurDataURL={data.blurImgs[i]}
                 />
-              </motion.div>
+              </FadeDiv>
             );
           })}
         </div>

@@ -24,14 +24,12 @@ const config: Config = {
 
         // min-width responsive design
         xxs: "375px",
+        s: "445px",
         xs: "530px",
         md: "768px",
         lg: "940px",
         xl: "1024px",
         xxl: "1300px",
-
-        "card-xs": "390px",
-        // only for card light hover effect
       },
 
       keyframes: {

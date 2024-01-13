@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/carousel";
 
 import clsx from "clsx";
-
 import FadeDiv from "@/components/FadeDiv";
 
 export default function MovieCarousel({
