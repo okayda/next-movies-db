@@ -5,6 +5,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import QueryProvider from "@/lib/tanstack-query/QueryProvider";
+import CardsGrid from "./movie/CardsGrid";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -21,15 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.className} antialiased`}>
-        <div className="mx-auto max-w-xxl px-3 py-6 md:px-6 ">
+        <div className="mx-auto max-w-xxl px-3 py-6 md:px-6">
           <Nav />
 
-          <main>
-            <QueryProvider>{children}</QueryProvider>
-          </main>
-
-          <Footer />
+          <main>{children}</main>
         </div>
+
+        <Footer />
       </body>
     </html>
   );

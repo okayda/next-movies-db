@@ -41,9 +41,9 @@ export const fetchMoviesTrending = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgUrls);
-
-    return { content: formattedData, blurImgs: blurredUrls };
+    // const blurredUrls = await addBlurredUrls(imgUrls);
+    // blurImgs: blurredUrls
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth movie trending have a: ", error);
   }
@@ -77,15 +77,13 @@ export const fetchMoviesPopular = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgUrls);
-
-    return { content: formattedData, blurImgs: blurredUrls };
+    // const blurredUrls = await addBlurredUrls(imgUrls);
+    // blurImgs: blurredUrls
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth movie popular have a: ", error);
   }
 };
-
-
 
 export const fetchMoviesTopRated = async function () {
   try {
@@ -115,9 +113,9 @@ export const fetchMoviesTopRated = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgUrls);
-
-    return { content: formattedData, blurImgs: blurredUrls };
+    // const blurredUrls = await addBlurredUrls(imgUrls);
+    // blurImgs: blurredUrls
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth movie top rated have a: ", error);
   }
@@ -151,9 +149,9 @@ export const fetchMoviesUpcoming = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgUrls);
-
-    return { content: formattedData, blurImgs: blurredUrls };
+    // const blurredUrls = await addBlurredUrls(imgUrls);
+    // blurImgs: blurredUrls
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth movie upcoming have a: ", error);
   }

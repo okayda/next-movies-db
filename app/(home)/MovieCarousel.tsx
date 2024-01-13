@@ -15,12 +15,8 @@ import {
 } from "@/components/ui/carousel";
 
 import clsx from "clsx";
-import { motion } from "framer-motion";
 
-const variants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
+import FadeDiv from "@/components/FadeDiv";
 
 export default function MovieCarousel({
   data,
@@ -75,16 +71,7 @@ export default function MovieCarousel({
                     key={movie.id}
                     className="h-[180px]  pl-1 xxs:h-[200px] xs:h-[240px] sm:h-[300px] md:h-[190px] md:basis-1/2 xl:basis-1/3"
                   >
-                    <motion.div
-                      variants={variants}
-                      initial="hidden"
-                      animate="visible"
-                      transition={{
-                        delay: i * 0.15,
-                        ease: "easeInOut",
-                        duration: 0.5,
-                      }}
-                    >
+                    <FadeDiv index={i} duration={0.6}>
                       <div className="h-full p-1">
                         <Card className="bg-red-[#5A698F] h-full overflow-hidden rounded-md border-none">
                           <Image
@@ -93,12 +80,12 @@ export default function MovieCarousel({
                             width={320}
                             height={190}
                             className="h-full w-full"
-                            placeholder="blur"
-                            blurDataURL={data.blurImgs[i]}
+                            // placeholder="blur"
+                            // blurDataURL={data.blurImgs[i]}
                           />
                         </Card>
                       </div>
-                    </motion.div>
+                    </FadeDiv>
                   </CarouselItem>
                 );
               })}

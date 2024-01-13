@@ -41,9 +41,9 @@ export const fetchTvTrending = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgUrls);
-
-    return { content: formattedData, blurImgs: blurredUrls };
+    // const blurredUrls = await addBlurredUrls(imgUrls);
+    // blurImgs: blurredUrls
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth tv trending have a: ", error);
   }
@@ -77,9 +77,9 @@ export const fetchTvPopular = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgUrls);
-
-    return { content: formattedData, blurImgs: blurredUrls };
+    // const blurredUrls = await addBlurredUrls(imgUrls);
+    // blurImgs: blurredUrls
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth tv popular have a: ", error);
   }
@@ -113,9 +113,9 @@ export const fetchTvOnAir = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgUrls);
-
-    return { content: formattedData, blurImgs: blurredUrls };
+    // const blurredUrls = await addBlurredUrls(imgUrls);
+    // blurImgs: blurredUrls
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth tv on air have a: ", error);
   }
@@ -149,9 +149,9 @@ export const fetchTvTopRated = async function () {
       };
     });
 
-    const blurredUrls = await addBlurredUrls(imgUrls);
-
-    return { content: formattedData, blurImgs: blurredUrls };
+    // const blurredUrls = await addBlurredUrls(imgUrls);
+    // blurImgs: blurredUrls
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth tv top rated have a: ", error);
   }

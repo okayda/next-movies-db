@@ -33,3 +33,7 @@ export const TV_POPULAR_API = "https://api.themoviedb.org/3/tv/popular";
 export const TV_ONAIR__API = "https://api.themoviedb.org/3/tv/on_the_air";
 
 export const TV_TOP_RATED_API = "https://api.themoviedb.org/3/tv/top_rated";
+
+export const MOVIE_GENRES_API = "https://api.themoviedb.org/3/genre/movie/list";
+
+export const TV_GENRES_API = "https://api.themoviedb.org/3/genre/tv/list";

@@ -15,7 +15,7 @@ const config: Config = {
   theme: {
     extend: {
       maxWidth: {
-        xxl: "1300px",
+        xxl: "1240px",
       },
 
       screens: {
@@ -29,6 +29,33 @@ const config: Config = {
         lg: "940px",
         xl: "1024px",
         xxl: "1300px",
+
+        "card-xs": "390px",
+        // only for card light hover effect
+      },
+
+      keyframes: {
+        heartbeat: {
+          "0%": {
+            transform: "scale(1)",
+          },
+          "25%": {
+            transform: "scale(1.2)",
+          },
+          "50%": {
+            transform: "scale(1)",
+          },
+          "75%": {
+            transform: "scale(1.2)",
+          },
+          "100%": {
+            transform: "scale(1)",
+          },
+        },
+      },
+
+      animation: {
+        heartbeat: "heartbeat 4s ease-in-out infinite", // Corrected animation name
       },
     },
   },
