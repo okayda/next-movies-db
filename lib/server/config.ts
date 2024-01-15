@@ -12,8 +12,13 @@ export const REVALIDATE_MOVIES_TRENDING = 3600; // 1 Hour
 export const REVALIDATE_TV_TRENDING = 86400; // 24 Hours
 
 // TMDB APIs
+
+// Movies
 export const MOVIE_IMG_URL = (imgId: number) =>
   `https://image.tmdb.org/t/p/original${imgId}`;
+
+export const MOVIE_IMG_TEST = (imgId: number) =>
+  `https://api.themoviedb.org/3/movie/${imgId}/images`;
 
 export const MOVIES_TRENDING_API =
   "https://api.themoviedb.org/3/trending/all/week";
@@ -26,6 +31,7 @@ export const MOVIES_TOP_RATED_API =
 export const MOVIES_UPCOMING_API =
   "https://api.themoviedb.org/3/movie/upcoming";
 
+// Series
 export const TV_TRENDING_API = "https://api.themoviedb.org/3/trending/tv/day";
 
 export const TV_POPULAR_API = "https://api.themoviedb.org/3/tv/popular";
@@ -34,6 +40,17 @@ export const TV_ONAIR__API = "https://api.themoviedb.org/3/tv/on_the_air";
 
 export const TV_TOP_RATED_API = "https://api.themoviedb.org/3/tv/top_rated";
 
+// Genres
 export const MOVIE_GENRES_API = "https://api.themoviedb.org/3/genre/movie/list";
 
 export const TV_GENRES_API = "https://api.themoviedb.org/3/genre/tv/list";
+
+// Search (Not use for search bar)
+export const SEARCH_MOVIE_API = (movieId: string) => `
+https://api.themoviedb.org/3/movie/${movieId}`;
+
+export const SEARCH_MOVIE_CASTS_API = (movieId: string) => `
+https://api.themoviedb.org/3/movie/${movieId}/credits`;
+
+export const SEARCH_SERIES_API = (seriesId: number) => `
+https://api.themoviedb.org/3/tv/${seriesId}`;

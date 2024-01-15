@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Responsbile for bluring the URL Imgs using Base64 mechanism
+// Bluring the URL Imgs using Base64 mechanism
 export async function getBase64(imgUrl: any) {
   /*
   NEXT_PUBLIC_DOMAIN env variable represent the deployed web URL 
@@ -49,3 +49,24 @@ export async function addBlurredUrls(imgs: any[]) {
 
   return base64Results;
 }
+
+// Movies & Series converter methods
+export const convertRating = function (vote: number) {
+  return vote !== undefined ? (vote / 2).toFixed(1) : 0;
+};
+
+export const convertLength = function (runtime: number) {
+  return runtime !== 0 && runtime !== undefined ? runtime + " min." : "N/A";
+};
+
+export const convertLanguage = function (languages: any) {
+  return languages.length !== 0 ? languages[0].english_name : "N/A";
+};
+
+export const convertYear = function (year: any) {
+  return !year ? "N/A" : year.substring(0, 4);
+};
+
+export const convertStatus = function (status: any) {
+  return !status ? "N/A" : status;
+};

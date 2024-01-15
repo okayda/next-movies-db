@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import Autoplay from "embla-carousel-autoplay";
 
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -68,17 +68,17 @@ export default function MovieCarousel({
                 return (
                   <CarouselItem
                     key={movie.id}
-                    className="h-[180px]  pl-1 xxs:h-[200px] xs:h-[240px] sm:h-[300px] md:h-[190px] md:basis-1/2 xl:basis-1/3"
+                    className="h-[180px] pl-1 xxs:h-[220px] sm:h-[300px] md:h-[190px] md:basis-1/2 xl:basis-1/3"
                   >
-                    <FadeDiv index={i} duration={0.6}>
-                      <div className="h-full p-1">
-                        <Card className="bg-red-[#5A698F] h-full overflow-hidden rounded-md border-none">
+                    <FadeDiv index={i} duration={0.6} className="h-full ">
+                      <div className="] h-full p-1">
+                        <Card className="shadow-box h-full overflow-hidden rounded-md border-none bg-[#1c1c1c]">
                           <Image
                             src={movie.img}
                             alt={movie.title || "Movie"}
                             width={320}
                             height={190}
-                            className="h-full w-full"
+                            className="h-full w-full object-cover"
                             placeholder="blur"
                             blurDataURL={data.blurImgs[i]}
                           />

@@ -41,25 +41,30 @@ export default function MovieGrid({
         <div className="grid grid-cols-2 gap-3 xs:grid-cols-3 xxl:grid-cols-4">
           {data.content.map((movie: any, i: number) => {
             return (
-              <FadeDiv
-                key={movie.id}
-                index={i}
-                duration={0.5}
-                className={clsx("h-full w-full overflow-hidden rounded-md ", {
+              <Link
+                href={isMovie ? `/movie/${movie.id}` : `/series/${movie.id}`}
+                className={clsx("shadow-box overflow-hidden rounded-md", {
                   "xxl:h-[160px]": i < 4,
                   "xxl:col-span-2 xxl:h-[320px]": i >= 4,
                 })}
               >
-                <Image
-                  src={movie.img}
-                  alt={movie.title}
-                  width={854}
-                  height={480}
-                  className="h-full w-full transform object-cover transition-transform duration-300 hover:scale-110"
-                  placeholder="blur"
-                  blurDataURL={data.blurImgs[i]}
-                />
-              </FadeDiv>
+                <FadeDiv
+                  key={movie.id}
+                  index={i}
+                  duration={0.5}
+                  className="h-full w-full"
+                >
+                  <Image
+                    src={movie.img}
+                    alt={movie.title}
+                    width={854}
+                    height={480}
+                    className="h-full w-full transform object-cover transition-transform duration-300 hover:scale-110"
+                    placeholder="blur"
+                    blurDataURL={data.blurImgs[i]}
+                  />
+                </FadeDiv>
+              </Link>
             );
           })}
         </div>
