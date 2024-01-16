@@ -65,9 +65,6 @@ export default function CardHover({ children }: { children: React.ReactNode }) {
       }}
       style={{
         width: "100%",
-        borderRadius: "0.5rem",
-        boxShadow:
-          "0 0 0 1px rgba(0, 0, 0, 0.105), 0 9px 20px 0 rgba(0, 0, 0, 0.02), 0 1px 2px 0 rgba(0, 0, 0, 0.106)",
         transformStyle: "preserve-3d",
         transformOrigin: "center",
         perspective: "320px",

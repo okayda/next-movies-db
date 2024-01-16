@@ -13,7 +13,7 @@ const myStyles = {
 export default function MovieDetails({ movie }: { movie: any }) {
   return (
     <div className="mx-auto max-w-[530px] pb-[120px] pt-8 md:mx-0 md:flex md:max-w-none md:gap-8 lg:gap-16">
-      <div className="min-h-[420px] min-w-[280px] flex-shrink-0 md:min-h-[530px] md:min-w-[350px]">
+      <div className="mx-auto h-[420px] min-h-[420px] w-[280px] min-w-[280px] flex-shrink-0 md:mx-0 md:h-[530px] md:min-h-[530px] md:w-[350px] md:min-w-[350px]">
         <CardHover>
           <Image
             src={movie?.img}

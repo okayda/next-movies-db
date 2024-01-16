@@ -43,17 +43,13 @@ export default function MovieGrid({
             return (
               <Link
                 href={isMovie ? `/movie/${movie.id}` : `/series/${movie.id}`}
+                key={movie.id}
                 className={clsx("shadow-box overflow-hidden rounded-md", {
                   "xxl:h-[160px]": i < 4,
                   "xxl:col-span-2 xxl:h-[320px]": i >= 4,
                 })}
               >
-                <FadeDiv
-                  key={movie.id}
-                  index={i}
-                  duration={0.5}
-                  className="h-full w-full"
-                >
+                <FadeDiv index={i} duration={0.5} className="h-full w-full">
                   <Image
                     src={movie.img}
                     alt={movie.title}
