@@ -73,15 +73,23 @@ export default function MovieCarousel({
                     <FadeDiv index={i} duration={0.6} className="h-full ">
                       <div className="] h-full p-1">
                         <Card className="shadow-box h-full overflow-hidden rounded-md border-none bg-[#1c1c1c]">
-                          <Image
-                            src={movie.img}
-                            alt={movie.title || "Movie"}
-                            width={320}
-                            height={190}
-                            className="h-full w-full object-cover"
-                            placeholder="blur"
-                            blurDataURL={data.blurImgs[i]}
-                          />
+                          <Link
+                            href={
+                              isMovie
+                                ? `/movie/${movie.id}`
+                                : `/series/${movie.id}`
+                            }
+                          >
+                            <Image
+                              src={movie.img}
+                              alt={movie.title || "Movie"}
+                              width={320}
+                              height={190}
+                              className="h-full w-full object-cover"
+                              placeholder="blur"
+                              blurDataURL={data.blurImgs[i]}
+                            />
+                          </Link>
                         </Card>
                       </div>
                     </FadeDiv>

@@ -143,7 +143,7 @@
 }
 
 @layer utilities {
-  .shadow-light {
+  .shadow-nav {
     box-shadow:
       #fff 0px 0px 6px 0px,
       #000 0px 0px 8px 0px;

@@ -12,7 +12,7 @@ export default function CardsGrid({ data }: { data: any }) {
             <FadeDiv
               index={i}
               duration={0.5}
-              className="genre-card relative h-[240px] rounded-lg border border-[#373737] before:h-[600px]  before:w-[600px] xxs:h-[150px] xxs:before:h-[340px] xxs:before:w-[340px] s:before:h-[400px] s:before:w-[400px] xs:before:h-[380px] xs:before:w-[380px] sm:h-[180px] md:h-[200px]"
+              className="genre-card relative h-[240px] rounded-lg border border-[#444] before:h-[600px]  before:w-[600px] xxs:h-[150px] xxs:before:h-[340px] xxs:before:w-[340px] s:before:h-[400px] s:before:w-[400px] xs:before:h-[380px] xs:before:w-[380px] sm:h-[180px] md:h-[200px]"
             >
               <h2 className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 transform text-center text-xl text-[#f1f1f1]">
                 {genre.name}

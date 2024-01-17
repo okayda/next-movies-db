@@ -56,7 +56,7 @@ export const convertRating = function (vote: number) {
 };
 
 export const convertLength = function (runtime: number) {
-  return runtime !== 0 && runtime !== undefined ? runtime + " min." : "N/A";
+  return runtime ? `${runtime} .min` : "N/A";
 };
 
 export const convertLanguage = function (languages: any) {

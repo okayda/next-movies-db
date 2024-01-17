@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import "@smastrom/react-rating/style.css";
 import { Rating as ReactRating, RoundedStar } from "@smastrom/react-rating";
 import CardHover from "./CardHover";
+import clsx from "clsx";
 
 const myStyles = {
   itemShapes: RoundedStar,
@@ -13,18 +15,48 @@ const myStyles = {
 export default function MovieDetails({ movie }: { movie: any }) {
   return (
     <div className="mx-auto max-w-[530px] pb-[120px] pt-8 md:mx-0 md:flex md:max-w-none md:gap-8 lg:gap-16">
-      <div className="mx-auto h-[420px] min-h-[420px] w-[280px] min-w-[280px] flex-shrink-0 md:mx-0 md:h-[530px] md:min-h-[530px] md:w-[350px] md:min-w-[350px]">
-        <CardHover>
-          <Image
-            src={movie?.img}
-            alt={movie?.title}
-            width={854}
-            height={480}
-            className="shadow-box mx-auto h-[420px] w-[280px] rounded-md object-cover md:mx-0 md:h-[530px] md:w-[350px]"
-            placeholder="blur"
-            blurDataURL={movie?.imgBlur}
-          />
-        </CardHover>
+      <div>
+        <div className="mx-auto h-[420px] min-h-[420px] w-[280px] min-w-[280px] flex-shrink-0 md:mx-0 md:h-[530px] md:min-h-[530px] md:w-[350px] md:min-w-[350px]">
+          <CardHover>
+            <Image
+              src={movie?.img}
+              alt={movie?.title}
+              width={640}
+              height={280}
+              className="shadow-box mx-auto h-[420px] w-[280px] rounded-md object-cover md:mx-0 md:h-[530px] md:w-[350px]"
+              placeholder="blur"
+              blurDataURL={movie?.imgBlur}
+            />
+          </CardHover>
+        </div>
+
+        <div className=" flex gap-2 pt-6  text-center text-sm">
+          <Link
+            href={movie.homepage}
+            target="_blank"
+            className={clsx(
+              "grow rounded-md border border-[#444] bg-[#1c1c1c] p-2 tracking-wider text-white transition-colors hover:bg-[#2c2c2c] hover:text-[#f1f1f1]",
+              {
+                "pointer-events-none": !movie.homepage,
+              },
+            )}
+          >
+            {movie.homepage ? "Page" : "Page: None"}
+          </Link>
+
+          <Link
+            href={`https://www.imdb.com/title/${movie.imdbId}`}
+            target="_blank"
+            className={clsx(
+              "grow rounded-md border border-[#444] bg-[#1c1c1c] p-2 tracking-wider text-white transition-colors hover:bg-[#2c2c2c] hover:text-[#f1f1f1]",
+              {
+                "pointer-events-none": !movie.imdbId,
+              },
+            )}
+          >
+            {movie.imdbId ? "IMDB" : "IMDB: None"}
+          </Link>
+        </div>
       </div>
       <div>
         <div className="py-7 text-center md:pt-0 md:text-left">
@@ -89,18 +121,22 @@ export default function MovieDetails({ movie }: { movie: any }) {
         </div>
 
         <div className="text-[#f1f1f1]">
-          <h3 className="mb-2 tracking-wider">Top Casts</h3>
+          <h3 className="mb-3 tracking-wider">Top Casts</h3>
 
           <ul className="grid grid-cols-2 gap-4 text-sm">
             {movie?.topCasts.map((cast: any, i: number) => (
               <li key={cast.id}>
-                <div className="flex items-center gap-2">
+                <div className="flex h-full items-center gap-2">
                   <Image
                     src={cast.img}
                     alt={cast.id}
                     width={50}
-                    height={50}
+                    height={75}
                     className="rounded-md"
+                    {...(cast.isBlur && {
+                      placeholder: "blur",
+                      blurDataURL: cast.imgBlurImg,
+                    })}
                   />
                   <div className="flex flex-col">
                     <span>{cast.character}</span>

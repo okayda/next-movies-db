@@ -17,9 +17,6 @@ export const REVALIDATE_TV_TRENDING = 86400; // 24 Hours
 export const MOVIE_IMG_URL = (imgId: number) =>
   `https://image.tmdb.org/t/p/original${imgId}`;
 
-export const MOVIE_IMG_TEST = (imgId: number) =>
-  `https://api.themoviedb.org/3/movie/${imgId}/images`;
-
 export const MOVIES_TRENDING_API =
   "https://api.themoviedb.org/3/trending/all/week";
 
@@ -52,5 +49,8 @@ https://api.themoviedb.org/3/movie/${movieId}`;
 export const SEARCH_MOVIE_CASTS_API = (movieId: string) => `
 https://api.themoviedb.org/3/movie/${movieId}/credits`;
 
-export const SEARCH_SERIES_API = (seriesId: number) => `
+export const SEARCH_SERIES_API = (seriesId: string) => `
 https://api.themoviedb.org/3/tv/${seriesId}`;
+
+export const SEARCH_SERIES_CASTS_API = (seriesId: string) => `
+https://api.themoviedb.org/3/tv/${seriesId}/credits`;
