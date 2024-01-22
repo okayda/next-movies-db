@@ -11,28 +11,28 @@ import {
   fetchTvTopRated,
 } from "@/server/actions/tv-actions";
 
-import MovieGrid from "@/app/(home)/MovieGrid";
-import MovieCarousel from "./MovieCarousel";
+import FilmGrid from "@/app/(home)/FilmGrid";
+import MovieCarousel from "./FilmCarousel";
 
 const moviesPopularGrid = async function () {
   const title = "Popular";
   const popularMovies = await fetchMoviesPopular();
 
-  return <MovieGrid key={title} title={title} data={popularMovies} />;
+  return <FilmGrid key={title} title={title} data={popularMovies} />;
 };
 
 const moviesTopRatedGrid = async function () {
   const title = "Top Rated";
   const topRatedMovies = await fetchMoviesTopRated();
 
-  return <MovieGrid key={title} title={title} data={topRatedMovies} />;
+  return <FilmGrid key={title} title={title} data={topRatedMovies} />;
 };
 
 const moviesUpcomingGrid = async function () {
   const title = "Upcoming";
   const upcomingMovies = await fetchMoviesUpcoming();
 
-  return <MovieGrid key={title} title={title} data={upcomingMovies} />;
+  return <FilmGrid key={title} title={title} data={upcomingMovies} />;
 };
 
 const seriesTrendingCarousel = async function () {
@@ -47,7 +47,7 @@ const seriesPopularGrid = async function () {
   const popularSeries = await fetchTvPopular();
 
   return (
-    <MovieGrid key={title} title={title} data={popularSeries} isMovie={false} />
+    <FilmGrid key={title} title={title} data={popularSeries} isMovie={false} />
   );
 };
 
@@ -56,7 +56,7 @@ const seriesOnAirGrid = async function () {
   const onAirSeries = await fetchTvOnAir();
 
   return (
-    <MovieGrid key={title} title={title} data={onAirSeries} isMovie={false} />
+    <FilmGrid key={title} title={title} data={onAirSeries} isMovie={false} />
   );
 };
 
@@ -65,16 +65,11 @@ const seriesTopRatedGrid = async function () {
   const topRatedSeries = await fetchTvTopRated();
 
   return (
-    <MovieGrid
-      key={title}
-      title={title}
-      data={topRatedSeries}
-      isMovie={false}
-    />
+    <FilmGrid key={title} title={title} data={topRatedSeries} isMovie={false} />
   );
 };
 
-export default async function fetchMovieGrid(page: number) {
+export default async function fetchFilmGrid(page: number) {
   const grids = [
     moviesPopularGrid,
     moviesTopRatedGrid,

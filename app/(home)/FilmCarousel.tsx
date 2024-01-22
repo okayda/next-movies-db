@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import Autoplay from "embla-carousel-autoplay";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -17,7 +17,7 @@ import {
 import clsx from "clsx";
 import FadeDiv from "@/components/FadeDiv";
 
-export default function MovieCarousel({
+export default function FilmCarousel({
   data,
   isMovie = true,
 }: {

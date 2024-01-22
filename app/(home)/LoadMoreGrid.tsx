@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useInView } from "framer-motion";
-import fetchMovieGrid from "@/app/(home)/fetchMovieGrid";
+import fetchFilmGrid from "@/app/(home)/fetchFilmGrid";
 import Spinner from "@/components/Spinner";
 
 const homePageGridSection = 6;
@@ -20,7 +20,7 @@ export default function LoadMoreGrid() {
         try {
           setFetching(true);
 
-          const movieGrid = await fetchMovieGrid(page);
+          const movieGrid = await fetchFilmGrid(page);
           setData((prevData) => [...prevData, movieGrid]);
 
           setPage((prev) => (prev += 1));

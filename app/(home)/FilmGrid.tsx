@@ -3,7 +3,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import FadeDiv from "@/components/FadeDiv";
 
-export default function MovieGrid({
+export default function FilmGrid({
   title = "Anything",
   isMovie = true,
   data,

@@ -1,5 +1,5 @@
 import LoadMoreGrid from "@/app/(home)/LoadMoreGrid";
-import MovieCarousel from "@/app/(home)/MovieCarousel";
+import FilmCarousel from "@/app/(home)/FilmCarousel";
 import { fetchMoviesTrending } from "@/server/actions/movie-actions";
 
 export default async function Home() {
@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <>
-      <MovieCarousel data={trendingMovies} />
+      <FilmCarousel data={trendingMovies} />
 
       <LoadMoreGrid />
     </>
