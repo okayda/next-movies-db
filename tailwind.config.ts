@@ -20,7 +20,7 @@ const config: Config = {
 
       screens: {
         // max-width responsive design
-        // "max-xs": { max: "530px" },
+        // "min-xxs": { max: "375px" },
 
         // min-width responsive design
         xxs: "375px",

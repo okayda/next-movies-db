@@ -99,8 +99,8 @@ export default function MovieCarousel({
             </CarouselContent>
 
             <div className="hidden xs:block">
-              <CarouselPrevious className="shadow-light bg-[#1c1c1c] text-[#f1f1f1] hover:bg-[#2c2c2c] hover:text-[#f1f1f1]" />
-              <CarouselNext className="shadow-light bg-[#1c1c1c] text-[#f1f1f1] hover:bg-[#2c2c2c] hover:text-[#f1f1f1]" />
+              <CarouselPrevious className="shadow-nav bg-[#1c1c1c] text-[#f1f1f1] hover:bg-[#2c2c2c] hover:text-[#f1f1f1]" />
+              <CarouselNext className="shadow-nav bg-[#1c1c1c] text-[#f1f1f1] hover:bg-[#2c2c2c] hover:text-[#f1f1f1]" />
             </div>
           </Carousel>
         </div>

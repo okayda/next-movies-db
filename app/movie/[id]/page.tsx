@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Loading from "./loading";
-import { fetchMovieSearch } from "@/lib/server/actions/search-actions";
+import { fetchMovieSearch } from "@/server/actions/search-actions";
 import MovieDetails from "../../../components/MovieDetails";
 
 export default async function page({ params }: { params: { id: string } }) {

@@ -2,14 +2,14 @@ import {
   fetchMoviesPopular,
   fetchMoviesUpcoming,
   fetchMoviesTopRated,
-} from "../../lib/server/actions/movie-actions";
+} from "../../server/actions/movie-actions";
 
 import {
   fetchTvTrending,
   fetchTvPopular,
   fetchTvOnAir,
   fetchTvTopRated,
-} from "@/lib/server/actions/tv-actions";
+} from "@/server/actions/tv-actions";
 
 import MovieGrid from "@/app/(home)/MovieGrid";
 import MovieCarousel from "./MovieCarousel";

@@ -1,6 +1,9 @@
+"use server";
+
 import {
   MOVIE_GENRES_API,
   REVALIDATE_NORMAL,
+  SEARCH_MOVIE_TARGET_GENRE,
   TV_GENRES_API,
   optionConfig,
 } from "../config";

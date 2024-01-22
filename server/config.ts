@@ -1,3 +1,4 @@
+// This config should be attach for every request to the TMDB APIs
 export const optionConfig = {
   method: "GET",
   headers: {
@@ -11,8 +12,7 @@ export const REVALIDATE_NORMAL = 14400; // 4 Hours
 export const REVALIDATE_MOVIES_TRENDING = 3600; // 1 Hour
 export const REVALIDATE_TV_TRENDING = 86400; // 24 Hours
 
-// TMDB APIs
-
+// *** TMDB APIs ***
 // Movies
 export const MOVIE_IMG_URL = (imgId: number) =>
   `https://image.tmdb.org/t/p/original${imgId}`;
@@ -54,3 +54,7 @@ https://api.themoviedb.org/3/tv/${seriesId}`;
 
 export const SEARCH_SERIES_CASTS_API = (seriesId: string) => `
 https://api.themoviedb.org/3/tv/${seriesId}/credits`;
+
+// Seach Genre
+export const SEARCH_MOVIE_TARGET_GENRE = (genreId: any, pageNum: any) =>
+  `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pageNum}&sort_by=popularity.desc&with_genres=${genreId}`;

@@ -24,7 +24,7 @@ export default function Nav() {
             </li>
 
             <li>
-              <Link href="/movie">
+              <Link href="/movie/genres">
                 <Image
                   src="/assets/nav-films.svg"
                   width={16}

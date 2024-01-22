@@ -5,7 +5,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import QueryProvider from "@/lib/tanstack-query/QueryProvider";
-import CardsGrid from "../components/CardsGrid";
+import CardsGrid from "../components/GenresCardGrid";
 import SearchBar from "@/components/SearchBar";
 
 const outfit = Outfit({ subsets: ["latin"] });
@@ -28,7 +28,9 @@ export default function RootLayout({
 
           <SearchBar placeholder="Search for movies or TV series" />
 
-          <main>{children}</main>
+          <main>
+            <QueryProvider>{children}</QueryProvider>
+          </main>
         </div>
 
         <Footer />

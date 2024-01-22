@@ -1,6 +1,6 @@
 "use server";
 
-import { addBlurredUrls } from "../../utils";
+import { addBlurredUrls } from "@/lib/utils";
 
 import {
   optionConfig,

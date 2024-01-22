@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export default function QueryProvider({
   children,
@@ -24,7 +24,6 @@ export default function QueryProvider({
     <QueryClientProvider client={queryClient}>
       {/* TanStack-Query Debugging */}
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-
       {children}
     </QueryClientProvider>
   );

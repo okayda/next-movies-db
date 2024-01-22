@@ -1,12 +1,12 @@
-import { fetchTvGenres } from "@/lib/server/actions/genres-actions";
-import CardsGrid from "../../components/CardsGrid";
+import { fetchTvGenres } from "@/server/actions/genres-actions";
+import GenresCardGrid from "../../components/GenresCardGrid";
 
 export default async function page() {
   const tvGenres = await fetchTvGenres();
 
   return (
     <section>
-      <CardsGrid data={tvGenres} />
+      <GenresCardGrid data={tvGenres} />
     </section>
   );
 }

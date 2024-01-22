@@ -53,8 +53,8 @@ export default function MovieGrid({
                   <Image
                     src={movie.img}
                     alt={movie.title}
-                    width={854}
-                    height={480}
+                    width={640}
+                    height={280}
                     className="h-full w-full transform object-cover transition-transform duration-300 hover:scale-110"
                     placeholder="blur"
                     blurDataURL={data.blurImgs[i]}
