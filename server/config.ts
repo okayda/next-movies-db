@@ -55,6 +55,11 @@ https://api.themoviedb.org/3/tv/${seriesId}`;
 export const SEARCH_SERIES_CASTS_API = (seriesId: string) => `
 https://api.themoviedb.org/3/tv/${seriesId}/credits`;
 
-// Seach Genre
+// Seach Movie Genre
 export const SEARCH_MOVIE_TARGET_GENRE = (genreId: any, pageNum: any) =>
   `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pageNum}&sort_by=popularity.desc&with_genres=${genreId}`;
+
+// Search TV Genre
+
+export const SEARCH_TV_TARGET_GENRE = (genreId: any, pageNum: any) =>
+  `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=${pageNum}&sort_by=popularity.desc&with_genres=${genreId}`;

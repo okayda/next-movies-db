@@ -24,9 +24,11 @@ const intialPage: number = 1;
 export default function GenreFimsGrid({
   genreName,
   isMovie = true,
+  asyncFunc,
 }: {
   genreName: string;
   isMovie?: boolean;
+  asyncFunc: any;
 }) {
   const searchParams = useSearchParams();
 
@@ -34,7 +36,7 @@ export default function GenreFimsGrid({
 
   const { data, isLoading } = useQuery({
     queryKey: [genreName, currPage],
-    queryFn: () => fetchTargetMovieGenre(genreName, currPage),
+    queryFn: () => asyncFunc(genreName, currPage),
   });
 
   const totalPages = data?.totalPages;
@@ -69,10 +71,10 @@ export default function GenreFimsGrid({
                 >
                   <Image
                     src={movie.img}
-                    alt={movie.id}
+                    alt={movie.title}
                     width={540}
                     height={200}
-                    className="object-cover transition-transform duration-300 hover:scale-110"
+                    className="white object-cover text-[#f1f1f1] transition-transform duration-300 hover:scale-110"
                     placeholder="blur"
                     blurDataURL={data?.blurImgs[i]}
                   />

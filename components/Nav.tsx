@@ -36,7 +36,7 @@ export default function Nav() {
             </li>
 
             <li>
-              <Link href="/series">
+              <Link href="/series/genres">
                 <Image
                   src="/assets/nav-tv.svg"
                   width={16}
