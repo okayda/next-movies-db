@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Nav() {
   return (
     <header className="pb-6 md:py-6 md:pb-12">
-      <div className="shadow-nav flex items-center justify-between rounded-md bg-[#1c1c1c] bg-opacity-60 px-5 py-4 backdrop-blur-lg backdrop-filter">
+      <div className="shadow-nav flex items-center justify-between rounded-md bg-[#141414] px-5 py-4">
         <Link href="/">
           <Image src="/logo.svg" width={24} height={19} alt="" />
         </Link>
