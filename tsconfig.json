@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/movie/[id]/page.tsx",
-    "components/MovieDetails.tsx"
+    "components/FilmDetails.tsx"
   ],
   "exclude": [
     "node_modules"

@@ -55,7 +55,7 @@ export default function FilmGrid({
                     alt={movie.title}
                     width={640}
                     height={280}
-                    className="h-full w-full transform object-cover transition-transform duration-300 hover:scale-110"
+                    className="h-full w-full transform object-cover text-white transition-transform duration-300 hover:scale-110"
                     placeholder="blur"
                     blurDataURL={data.blurImgs[i]}
                   />

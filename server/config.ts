@@ -42,7 +42,7 @@ export const MOVIE_GENRES_API = "https://api.themoviedb.org/3/genre/movie/list";
 
 export const TV_GENRES_API = "https://api.themoviedb.org/3/genre/tv/list";
 
-// Search (Not use for search bar)
+// Click movie & TV series (Not use for search bar)
 export const SEARCH_MOVIE_API = (movieId: string) => `
 https://api.themoviedb.org/3/movie/${movieId}`;
 

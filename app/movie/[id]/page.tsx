@@ -1,16 +1,16 @@
 import { Suspense } from "react";
 import Loading from "./loading";
-import { fetchMovieSearch } from "@/server/actions/search-actions";
-import MovieDetails from "../../../components/MovieDetails";
+import { fetchMovieClick } from "@/server/actions/movie-click-actions";
+import FilmDetails from "../../../components/FilmDetails";
 
 export default async function page({ params }: { params: { id: string } }) {
   const movieId = params.id;
-  const movieDetails = await fetchMovieSearch(movieId);
+  const movieDetails = await fetchMovieClick(movieId);
 
   return (
     <section className="text-white">
       <Suspense fallback={<Loading />}>
-        <MovieDetails movie={movieDetails} />
+        <FilmDetails movie={movieDetails} />
       </Suspense>
     </section>
   );

@@ -28,7 +28,7 @@ export default function SearchBar({
             className="w-full border-b border-transparent bg-transparent pb-2 text-[15px] font-light tracking-wider text-[#f1f1f1] focus:border-b focus:border-[#5c5c5c] focus:outline-none md:text-xl lg:text-2xl"
           />
 
-          <button className="rounded-md border border-[#444] bg-[#141414] px-3 py-2 text-[13px] tracking-wide text-white transition-colors hover:bg-[#2c2c2c] hover:text-[#f1f1f1] md:text-base">
+          <button className="rounded-md border border-[#444] bg-[#141414] px-3 py-2 text-[13px] tracking-wide text-white transition-colors hover:bg-[#212121] hover:text-[#f1f1f1] md:text-base">
             Search
           </button>
         </div>

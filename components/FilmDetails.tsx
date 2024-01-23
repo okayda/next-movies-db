@@ -12,7 +12,7 @@ const myStyles = {
   inactiveFillColor: "#888",
 };
 
-export default function MovieDetails({ movie }: { movie: any }) {
+export default function FilmDetails({ movie }: { movie: any }) {
   return (
     <div className="mx-auto max-w-[530px] pb-[120px] pt-8 md:mx-0 md:flex md:max-w-none md:gap-8 lg:gap-16">
       <div>
@@ -35,7 +35,7 @@ export default function MovieDetails({ movie }: { movie: any }) {
             href={movie.homepage}
             target="_blank"
             className={clsx(
-              "grow rounded-md border border-[#444] bg-[#1c1c1c] p-2 tracking-wider text-white transition-colors hover:bg-[#2c2c2c] hover:text-[#f1f1f1]",
+              "grow rounded-md border border-[#444] bg-[#141414] p-2 tracking-wider text-white transition-colors hover:bg-[#212121] hover:text-[#f1f1f1]",
               {
                 "pointer-events-none": !movie.homepage,
               },
@@ -48,7 +48,7 @@ export default function MovieDetails({ movie }: { movie: any }) {
             href={`https://www.imdb.com/title/${movie.imdbId}`}
             target="_blank"
             className={clsx(
-              "grow rounded-md border border-[#444] bg-[#1c1c1c] p-2 tracking-wider text-white transition-colors hover:bg-[#2c2c2c] hover:text-[#f1f1f1]",
+              "grow rounded-md border border-[#444] bg-[#141414] p-2 tracking-wider text-white transition-colors hover:bg-[#212121] hover:text-[#f1f1f1]",
               {
                 "pointer-events-none": !movie.imdbId,
               },

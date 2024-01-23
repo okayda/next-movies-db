@@ -3,7 +3,6 @@
 import {
   MOVIE_GENRES_API,
   REVALIDATE_NORMAL,
-  SEARCH_MOVIE_TARGET_GENRE,
   TV_GENRES_API,
   optionConfig,
 } from "../config";
@@ -42,6 +41,6 @@ export const fetchTvGenres = async function () {
 
     return genres;
   } catch (error) {
-    console.log("Fecth genres tv have a: ", error);
+    console.log("Fecth genres series have a: ", error);
   }
 };

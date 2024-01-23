@@ -61,7 +61,7 @@ export default function GenreFimsGrid({
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-2 gap-3 pb-[60px] xs:grid-cols-3 xxl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 pb-[60px] pt-6 xs:grid-cols-3 xl:pt-0 xxl:grid-cols-4">
             {data?.content.map((movie: any, i: number) => {
               return (
                 <Link
@@ -74,7 +74,7 @@ export default function GenreFimsGrid({
                     alt={movie.title}
                     width={540}
                     height={200}
-                    className="white object-cover text-[#f1f1f1] transition-transform duration-300 hover:scale-110"
+                    className="white h-full w-full object-cover text-[#f1f1f1] transition-transform duration-300 hover:scale-110"
                     placeholder="blur"
                     blurDataURL={data?.blurImgs[i]}
                   />

@@ -68,15 +68,15 @@ export const fetchTargetTvGenre = async function (genreId: any, pageNum: any) {
 
     const imgUrls: string[] = [];
 
-    const formattedData = results.map((movie: any) => {
-      const img = MOVIE_IMG_URL(movie.backdrop_path);
+    const formattedData = results.map((series: any) => {
+      const img = MOVIE_IMG_URL(series.backdrop_path);
 
       imgUrls.push(img);
 
       return {
-        id: movie.id,
-        title: movie.title,
-        release_date: movie.release_date,
+        id: series.id,
+        title: series.name,
+        releaseDate: series.first_air_date,
         img,
       };
     });
