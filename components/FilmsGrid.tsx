@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 import clsx from "clsx";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchTargetMovieGenre } from "@/server/actions/genre-actions";
 import Spinner from "./Spinner";
 
 import {
@@ -21,7 +20,7 @@ import {
 
 const intialPage: number = 1;
 
-export default function GenreFimsGrid({
+export default function FilmsGrid({
   genreName,
   isMovie = true,
   asyncFunc,

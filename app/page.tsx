@@ -7,9 +7,9 @@ export default async function Home() {
 
   return (
     <>
-      <FilmCarousel data={trendingMovies} />
+      {/* <FilmCarousel data={trendingMovies} />
 
-      <LoadMoreGrid />
+      <LoadMoreGrid /> */}
     </>
   );
 }

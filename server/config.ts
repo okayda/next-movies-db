@@ -60,6 +60,9 @@ export const SEARCH_MOVIE_TARGET_GENRE = (genreId: any, pageNum: any) =>
   `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pageNum}&sort_by=popularity.desc&with_genres=${genreId}`;
 
 // Search TV Genre
-
 export const SEARCH_TV_TARGET_GENRE = (genreId: any, pageNum: any) =>
   `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=${pageNum}&sort_by=popularity.desc&with_genres=${genreId}`;
+
+// SEARCH BAR
+export const SEARCH_BAR_FILMS = (filmName: any, pageNum: any) =>
+  `https://api.themoviedb.org/3/search/multi?query=${filmName}&include_adult=false&language=en-US&page=${pageNum}`;

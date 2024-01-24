@@ -5,14 +5,13 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import QueryProvider from "@/lib/tanstack-query/QueryProvider";
-import CardsGrid from "../components/GenresCardGrid";
 import SearchBar from "@/components/SearchBar";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Asean Drama",
-  description: "Trending to the Asean Dramas",
+  title: "Next Movies DB",
+  description: "Trending Movies using TMDB APIs",
 };
 
 export default function RootLayout({

@@ -1,4 +1,4 @@
-import GenreFilmsGrid from "@/components/GenreFilmsGrid";
+import FilmsGrid from "@/components/FilmsGrid";
 import { fetchTargetMovieGenre } from "@/server/actions/genre-actions";
 
 export default async function page({ params }: { params: { id: string } }) {
@@ -6,7 +6,7 @@ export default async function page({ params }: { params: { id: string } }) {
 
   return (
     <section>
-      <GenreFilmsGrid genreName={genreId} asyncFunc={fetchTargetMovieGenre} />
+      <FilmsGrid genreName={genreId} asyncFunc={fetchTargetMovieGenre} />
     </section>
   );
 }
