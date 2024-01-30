@@ -25,7 +25,7 @@ export default function LoadMoreGrid() {
 
           setPage((prev) => (prev += 1));
         } catch (error) {
-          console.error("Fetch grid movie: ", error);
+          console.error("Fetch grid film: ", error);
         } finally {
           setFetching(false);
         }

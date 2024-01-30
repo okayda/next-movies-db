@@ -16,23 +16,25 @@ import {
   SEARCH_MOVIE_CASTS_API,
 } from "../config";
 
+const USER_PLACEHOLDER_IMAGE = "/assets/user.png";
+
 export const fetchMovieClick = async function (movieId: string) {
   try {
-    const res1 = await fetch(SEARCH_MOVIE_API(movieId), {
+    const resMovieDetails = await fetch(SEARCH_MOVIE_API(movieId), {
       ...optionConfig,
       next: {
         revalidate: REVALIDATE_NORMAL,
       },
     });
 
-    const res2 = await fetch(SEARCH_MOVIE_CASTS_API(movieId), {
+    const resCastPeoples = await fetch(SEARCH_MOVIE_CASTS_API(movieId), {
       ...optionConfig,
       next: {
         revalidate: REVALIDATE_NORMAL,
       },
     });
 
-    if (!res1.ok || !res2.ok) throw Error;
+    if (!resMovieDetails.ok || !resCastPeoples.ok) throw Error;
 
     const {
       poster_path,
@@ -47,9 +49,9 @@ export const fetchMovieClick = async function (movieId: string) {
       overview,
       homepage,
       imdb_id,
-    } = await res1.json();
+    } = await resMovieDetails.json();
 
-    const { cast } = await res2.json();
+    const { cast } = await resCastPeoples.json();
 
     const filmImgUrl = MOVIE_IMG_URL(poster_path);
 
@@ -58,26 +60,28 @@ export const fetchMovieClick = async function (movieId: string) {
     const castData = cast.slice(0, 4).map((cast: any) => {
       const castImg = cast.profile_path
         ? MOVIE_IMG_URL(cast.profile_path)
-        : "/assets/user.png";
+        : USER_PLACEHOLDER_IMAGE;
 
-      if (cast.profile_path) castImgUrls.push(MOVIE_IMG_URL(cast.profile_path));
+      // if cast img exist will have a blurred img
+      if (cast.profile_path) castImgUrls.push(castImg);
 
       return {
         id: cast.id,
-        isBlur: cast.profile_path ? true : false,
         character: cast.character,
         name: cast.name,
+        hasBlur: cast.profile_path ? true : false,
         img: castImg,
       };
     });
 
     const castBlurredUrls = await addBlurredUrls(castImgUrls);
 
+    // if cast img exist will have an own property
+    // i.e, (blurredImg) responsible for applying the blurred img
     let blurImgsIndex = 0;
     castData.forEach((cast: any) => {
-      // if the cast dont have picture the Blur Img will not be applied
-      if (cast.isBlur) {
-        cast.imgBlurImg = castBlurredUrls[blurImgsIndex];
+      if (cast.hasBlur) {
+        cast.blurredImg = castBlurredUrls[blurImgsIndex];
         ++blurImgsIndex;
       }
     });
@@ -87,7 +91,7 @@ export const fetchMovieClick = async function (movieId: string) {
       imgBlur: await getBase64(filmImgUrl),
       title,
       tagline,
-      stars: Number(convertRating(vote_average)),
+      stars: convertRating(vote_average),
       language: convertLanguage(spoken_languages),
       runtime: convertLength(runtime),
       status: convertStatus(status),
@@ -96,7 +100,6 @@ export const fetchMovieClick = async function (movieId: string) {
 
       overview,
       topCasts: castData,
-      topCastsBlurImgs: castBlurredUrls,
       homepage,
       imdbId: imdb_id,
     };

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -15,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 const formSchema = z.object({
-  filmName: z.string().min(2, {
+  filmName: z.string().min(1, {
     message: "Empty search are not valid",
   }),
 });
@@ -25,6 +26,8 @@ export default function SearchBar({
 }: {
   placeholder: string;
 }) {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,9 +35,10 @@ export default function SearchBar({
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    const searchName = values.filmName.split(" ").join("%20");
+
+    router.push(`/search/films/${searchName}?page=1`);
   }
 
   return (

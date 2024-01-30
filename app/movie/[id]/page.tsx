@@ -10,7 +10,7 @@ export default async function page({ params }: { params: { id: string } }) {
   return (
     <section className="text-white">
       <Suspense fallback={<Loading />}>
-        <FilmDetails movie={movieDetails} />
+        <FilmDetails film={movieDetails} />
       </Suspense>
     </section>
   );

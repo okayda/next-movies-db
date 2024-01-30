@@ -52,7 +52,7 @@ export async function addBlurredUrls(imgs: any[]) {
 
 // Movies & Series converter methods
 export const convertRating = function (vote: number) {
-  return vote ? (vote / 2).toFixed(1) : 0;
+  return vote ? Number((vote / 2).toFixed(1)) : 0;
 };
 
 export const convertLength = function (runtime: number) {
