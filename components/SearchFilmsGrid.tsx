@@ -36,14 +36,9 @@ export default function SearchFilmsGrid({
     queryFn: () => asyncFunc(filmName, currPage),
   });
 
+  const searchFilm = filmName.split("%20").join(" ");
   const totalPages = data?.totalPages;
-
-  const isMovie = data?.isMovie;
-
-  // Movie | TV series
-  const typeFilm = data?.typeFilm;
-
-  /* <h2>Found 21 results for "Movie Name"</h2> */
+  const totalResults = data?.totalResults;
 
   const previousPage = function () {
     if (intialPage < currPage) return currPage - 1;
@@ -64,18 +59,26 @@ export default function SearchFilmsGrid({
           <Spinner />
         </div>
       ) : (
-        <>
-          <div className="grid grid-cols-2 gap-8 pb-[60px] pt-6 xs:grid-cols-3 xl:pt-0 xxl:grid-cols-4">
-            {data?.content.map((film: any, i: number) => {
+        <div className="pt-8 md:pt-12">
+          <h2 className="mb-6 text-[20px] font-light text-[#f1f1f1] md:mb-8 md:text-[32px]">
+            Found {totalResults} results for "{searchFilm}"
+          </h2>
+
+          <div className="xll:grid-cols-4 grid grid-cols-2 gap-7 pb-[60px] xs:grid-cols-3 xl:pt-0">
+            {data?.content.map((film: any) => {
+              const filmIcon = film?.isMovie
+                ? "/assets/gray-movies.svg"
+                : "/assets/gray-series.svg";
+
+              const isMovie = film.isMovie;
+
               return (
                 <Link
                   href={isMovie ? `/movie/${film.id}` : `/series/${film.id}`}
                   key={film.id}
-                  // className="shadow-box overflow-hidden rounded-md"
-                  className="overflow-hidden rounded-md"
                 >
-                  <div className="flex h-full flex-col justify-between">
-                    <div className="relative overflow-hidden lg:h-[160px]">
+                  <div className="flex  flex-col justify-between">
+                    <div className="shadow-box relative overflow-hidden rounded-md lg:h-[160px]">
                       <Image
                         src={film.img}
                         alt={film.title}
@@ -92,12 +95,16 @@ export default function SearchFilmsGrid({
                       />
                     </div>
 
-                    <div className="text-white">
-                      <div className="flex items-center gap-2">
+                    <div className="items-center  py-3 text-[#f1f1f1]">
+                      <div className="flex items-center gap-2 text-[13px] text-[#c3c3c6]">
                         <span>{film.releaseDate}</span>
+                        •
+                        <Image src={filmIcon} alt="" width={12} height={12} />
                         <span>{film.typeFilm}</span>
                       </div>
-                      <h2>{film.title}</h2>
+                      <h3 className="text-lg">
+                        {film.title.substring(0, 20) + "..."}
+                      </h3>
                     </div>
                   </div>
                 </Link>
@@ -169,7 +176,7 @@ export default function SearchFilmsGrid({
               </PaginationItem>
             </PaginationContent>
           </Pagination>
-        </>
+        </div>
       )}
     </div>
   );

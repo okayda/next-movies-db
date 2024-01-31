@@ -22,7 +22,7 @@ export const fetchSearchFilms = async function (filmName: any, pageNum: any) {
 
     if (!resFilms.ok) throw Error;
 
-    const { results, page, total_pages } = await resFilms.json();
+    const { results, page, total_pages, total_results } = await resFilms.json();
 
     const imgUrls: string[] = [];
 
@@ -35,12 +35,15 @@ export const fetchSearchFilms = async function (filmName: any, pageNum: any) {
       // if film img exist will have a blurred img
       if (film.backdrop_path) imgUrls.push(img);
 
-      const date = film.release_date || film.first_air_date;
+      const date =
+        film.release_date?.split("-")[0] ??
+        film.first_air_date?.split("-")[0] ??
+        "N/A";
 
       return {
         id: film.id,
         title: film.title || film.name,
-        releaseDate: date.split("-")[0],
+        releaseDate: date,
         isMovie: film.media_type === "movie" ? true : false,
         typeFilm: film.media_type === "tv" ? "TV Series" : "Movie",
         hasBlur: film.backdrop_path ? true : false,
@@ -63,6 +66,7 @@ export const fetchSearchFilms = async function (filmName: any, pageNum: any) {
     return {
       initialPage: page,
       totalPages: total_pages,
+      totalResults: total_results,
       content: formattedData,
     };
   } catch (error) {

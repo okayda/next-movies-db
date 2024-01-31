@@ -26,7 +26,7 @@ export default function Nav() {
             <li>
               <Link href="/movie/genres">
                 <Image
-                  src="/assets/nav-films.svg"
+                  src="/assets/nav-movies.svg"
                   width={16}
                   height={16}
                   alt=""
@@ -38,7 +38,7 @@ export default function Nav() {
             <li>
               <Link href="/series/genres">
                 <Image
-                  src="/assets/nav-tv.svg"
+                  src="/assets/nav-series.svg"
                   width={16}
                   height={16}
                   alt=""

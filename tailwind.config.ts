@@ -29,6 +29,7 @@ const config: Config = {
         md: "768px",
         lg: "940px",
         xl: "1024px",
+        xll: "1200px",
         xxl: "1300px",
       },
 
