@@ -139,4 +139,10 @@
       rgba(254, 254, 254, 0.2) 0px 1px 16px,
       rgba(151, 151, 151, 0.8) 0px 1px 1px;
   }
+
+  .shadow-carousel {
+    box-shadow:
+      rgba(254, 254, 254, 0.2) 0px 1px 6px,
+      rgba(151, 151, 151, 0.8) 0px 1px 1px;
+  }
 }

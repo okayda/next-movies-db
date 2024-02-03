@@ -13,6 +13,8 @@ import {
   TV_TOP_RATED_API,
 } from "../config";
 
+import { Film } from "@/lib/type";
+
 export const fetchTvTrending = async function () {
   try {
     const res = await fetch(TV_TRENDING_API, {
@@ -28,7 +30,7 @@ export const fetchTvTrending = async function () {
 
     const imgUrls: string[] = [];
 
-    const formattedData = results.slice(0, 6).map((tv: any) => {
+    const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
       const img = MOVIE_IMG_URL(tv.backdrop_path);
 
       imgUrls.push(img);
@@ -64,7 +66,7 @@ export const fetchTvPopular = async function () {
 
     const imgUrls: string[] = [];
 
-    const formattedData = results.slice(0, 6).map((tv: any) => {
+    const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
       const img = MOVIE_IMG_URL(tv.backdrop_path);
 
       imgUrls.push(img);
@@ -100,7 +102,7 @@ export const fetchTvOnAir = async function () {
 
     const imgUrls: string[] = [];
 
-    const formattedData = results.slice(0, 6).map((tv: any) => {
+    const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
       const img = MOVIE_IMG_URL(tv.backdrop_path);
 
       imgUrls.push(img);
@@ -136,7 +138,7 @@ export const fetchTvTopRated = async function () {
 
     const imgUrls: string[] = [];
 
-    const formattedData = results.slice(0, 6).map((tv: any) => {
+    const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
       const img = MOVIE_IMG_URL(tv.backdrop_path);
 
       imgUrls.push(img);

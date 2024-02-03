@@ -25,7 +25,7 @@ export default function SearchFilmsGrid({
   asyncFunc,
 }: {
   filmName: string;
-  asyncFunc: (filmName: any, currPage: any) => void;
+  asyncFunc: (filmName: string, currPage: number) => void;
 }) {
   const searchParams = useSearchParams();
 
@@ -60,11 +60,14 @@ export default function SearchFilmsGrid({
         </div>
       ) : (
         <div className="pt-8 md:pt-12">
-          <h2 className="mb-6 text-[20px] font-light text-[#f1f1f1] md:mb-8 md:text-[32px]">
-            Found {totalResults} results for "{searchFilm}"
+          <h2 className="mb-6 text-[20px] font-light  md:mb-8 md:text-[32px]">
+            <span className="text-[#c3c3c6]">Found</span>{" "}
+            <span className="text-[#f1f1f1]">{totalResults}</span>{" "}
+            <span className="text-[#c3c3c6]">results for</span>{" "}
+            <span className="text-[#f1f1f1]">"{searchFilm}"</span>
           </h2>
 
-          <div className="xll:grid-cols-4 grid grid-cols-2 gap-7 pb-[60px] xs:grid-cols-3 xl:pt-0">
+          <div className="xll:grid-cols-4 grid grid-cols-2 gap-3 pb-[60px] xs:grid-cols-3 sm:gap-7 xl:pt-0">
             {data?.content.map((film: any) => {
               const filmIcon = film?.isMovie
                 ? "/assets/gray-movies.svg"
@@ -77,7 +80,7 @@ export default function SearchFilmsGrid({
                   href={isMovie ? `/movie/${film.id}` : `/series/${film.id}`}
                   key={film.id}
                 >
-                  <div className="flex  flex-col justify-between">
+                  <div className="flex flex-col justify-between">
                     <div className="shadow-box relative overflow-hidden rounded-md lg:h-[160px]">
                       <Image
                         src={film.img}

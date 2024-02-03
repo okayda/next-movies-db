@@ -67,6 +67,6 @@ export const convertYear = function (year: any) {
   return !year ? "N/A" : year.substring(0, 4);
 };
 
-export const convertStatus = function (status: any) {
+export const convertStatus = function (status: string) {
   return !status ? "N/A" : status;
 };

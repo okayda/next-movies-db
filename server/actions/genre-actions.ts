@@ -8,10 +8,11 @@ import {
   SEARCH_TV_TARGET_GENRE,
   optionConfig,
 } from "../config";
+import { Film } from "@/lib/type";
 
 export const fetchTargetMovieGenre = async function (
-  genreId: any,
-  pageNum: any,
+  genreId: string,
+  pageNum: number,
 ) {
   try {
     const res = await fetch(SEARCH_MOVIE_TARGET_GENRE(genreId, pageNum), {
@@ -27,7 +28,7 @@ export const fetchTargetMovieGenre = async function (
 
     const imgUrls: string[] = [];
 
-    const formattedData = results.map((movie: any) => {
+    const formattedData: Film[] = results.map((movie: any) => {
       const img = MOVIE_IMG_URL(movie.backdrop_path);
 
       imgUrls.push(img);
@@ -53,7 +54,10 @@ export const fetchTargetMovieGenre = async function (
   }
 };
 
-export const fetchTargetTvGenre = async function (genreId: any, pageNum: any) {
+export const fetchTargetTvGenre = async function (
+  genreId: string,
+  pageNum: number,
+) {
   try {
     const res = await fetch(SEARCH_TV_TARGET_GENRE(genreId, pageNum), {
       ...optionConfig,
@@ -68,7 +72,7 @@ export const fetchTargetTvGenre = async function (genreId: any, pageNum: any) {
 
     const imgUrls: string[] = [];
 
-    const formattedData = results.map((series: any) => {
+    const formattedData: Film[] = results.map((series: any) => {
       const img = MOVIE_IMG_URL(series.backdrop_path);
 
       imgUrls.push(img);

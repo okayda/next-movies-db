@@ -16,12 +16,13 @@ import {
 
 import clsx from "clsx";
 import FadeDiv from "@/components/FadeDiv";
+import { Film } from "@/lib/type";
 
 export default function FilmCarousel({
   data,
   isMovie = true,
 }: {
-  data: any;
+  data: { content: Film[]; blurImgs: string[] } | undefined;
   isMovie?: boolean;
 }) {
   return (
@@ -64,15 +65,15 @@ export default function FilmCarousel({
             ]}
           >
             <CarouselContent className="-ml-1 w-full">
-              {data.content.map((movie: any, i: number) => {
+              {data?.content.map((movie: any, i: number) => {
                 return (
                   <CarouselItem
                     key={movie.id}
                     className="h-[180px] pl-1 xxs:h-[220px] sm:h-[300px] md:h-[190px] md:basis-1/2 xl:basis-1/3"
                   >
                     <FadeDiv index={i} duration={0.6} className="h-full ">
-                      <div className="] h-full p-1">
-                        <Card className="shadow-box h-full overflow-hidden rounded-md border-none bg-[#1c1c1c]">
+                      <div className="h-full p-1">
+                        <Card className="shadow-carousel h-full overflow-hidden rounded-md border-none bg-[#1c1c1c]">
                           <Link
                             href={
                               isMovie

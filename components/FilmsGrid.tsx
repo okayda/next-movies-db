@@ -27,13 +27,13 @@ export default function FilmsGrid({
 }: {
   genreName: string;
   isMovie?: boolean;
-  asyncFunc: any;
+  asyncFunc: (genreName: string, currPage: number) => void;
 }) {
   const searchParams = useSearchParams();
 
   const currPage = Number(searchParams.get("page"));
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading }: any = useQuery({
     queryKey: [genreName, currPage],
     queryFn: () => asyncFunc(genreName, currPage),
   });

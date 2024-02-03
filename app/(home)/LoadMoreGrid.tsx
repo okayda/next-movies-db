@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, ReactNode } from "react";
 import { useInView } from "framer-motion";
 import fetchFilmGrid from "@/app/(home)/fetchFilmGrid";
 import Spinner from "@/components/Spinner";
@@ -8,12 +8,18 @@ import Spinner from "@/components/Spinner";
 const homePageGridSection = 6;
 
 export default function LoadMoreGrid() {
+  // Page state
   const [page, setPage] = useState(0);
+
+  // Loading spinner state
   const ref = useRef(null);
   const inView = useInView(ref);
-  const [data, setData] = useState<any[]>([]);
+
+  // Getting state
+  const [data, setData] = useState<ReactNode[]>([]);
   const [fetching, setFetching] = useState(false);
 
+  // Execution state
   useEffect(() => {
     const fetchGridData = async () => {
       if (inView && page <= homePageGridSection && !fetching) {

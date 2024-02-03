@@ -8,10 +8,14 @@ import {
   SEARCH_BAR_FILMS,
   optionConfig,
 } from "../config";
+import { Series } from "@/lib/type";
 
 const FILM_PLACEHOLDER_IMAGE = "/assets/img-not-found.png";
 
-export const fetchSearchFilms = async function (filmName: any, pageNum: any) {
+export const fetchSearchFilms = async function (
+  filmName: string,
+  pageNum: number,
+) {
   try {
     const resFilms = await fetch(SEARCH_BAR_FILMS(filmName, pageNum), {
       ...optionConfig,
@@ -26,7 +30,7 @@ export const fetchSearchFilms = async function (filmName: any, pageNum: any) {
 
     const imgUrls: string[] = [];
 
-    const formattedData = results.map((film: any) => {
+    const formattedData: Series[] = results.map((film: any) => {
       const img = film.backdrop_path
         ? MOVIE_IMG_URL(film.backdrop_path)
         : FILM_PLACEHOLDER_IMAGE;
@@ -56,7 +60,7 @@ export const fetchSearchFilms = async function (filmName: any, pageNum: any) {
     // if film img exist will have an own property
     // i.e, (blurredImg) responsible for applying the blurred img
     let blurImgsIndex = 0;
-    formattedData.forEach((film: any) => {
+    formattedData.forEach((film: Series) => {
       if (film.hasBlur) {
         film.blurredImg = blurredUrls[blurImgsIndex];
         ++blurImgsIndex;

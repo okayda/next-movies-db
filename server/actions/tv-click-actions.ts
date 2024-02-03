@@ -16,6 +16,10 @@ import {
   SEARCH_SERIES_CASTS_API,
 } from "../config";
 
+import { Cast } from "@/lib/type";
+
+const USER_PLACEHOLDER_IMAGE = "/assets/user.png";
+
 export const fetchSeriesClick = async function (seriesId: string) {
   try {
     const res1 = await fetch(SEARCH_SERIES_API(seriesId), {
@@ -55,29 +59,30 @@ export const fetchSeriesClick = async function (seriesId: string) {
 
     const castImgUrls: string[] = [];
 
-    const castData = cast.slice(0, 4).map((cast: any) => {
+    const castData: Cast[] = cast.slice(0, 4).map((cast: any) => {
       const castImg = cast.profile_path
         ? MOVIE_IMG_URL(cast.profile_path)
-        : "/assets/user.png";
+        : USER_PLACEHOLDER_IMAGE;
 
       if (cast.profile_path) castImgUrls.push(MOVIE_IMG_URL(cast.profile_path));
 
       return {
         id: cast.id,
-        isBlur: cast.profile_path ? true : false,
         character: cast.character,
         name: cast.name,
+        hasBlur: cast.profile_path ? true : false,
         img: castImg,
       };
     });
 
     const castBlurredUrls = await addBlurredUrls(castImgUrls);
 
+    // if cast img exist will have an own property
+    // i.e, (blurredImg) responsible for applying the blurred img
     let blurImgsIndex = 0;
-    castData.forEach((cast: any) => {
-      // if the cast dont have picture the Blur Img will not be applied
-      if (cast.isBlur) {
-        cast.imgBlurImg = castBlurredUrls[blurImgsIndex];
+    castData.forEach((cast: Cast) => {
+      if (cast.hasBlur) {
+        cast.blurredImg = castBlurredUrls[blurImgsIndex];
         ++blurImgsIndex;
       }
     });

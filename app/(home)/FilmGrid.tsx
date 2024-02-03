@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
 import FadeDiv from "@/components/FadeDiv";
+import { Film } from "@/lib/type";
 
 export default function FilmGrid({
   title = "Anything",
@@ -10,7 +11,7 @@ export default function FilmGrid({
 }: {
   title: string;
   isMovie?: boolean;
-  data: any;
+  data: { content: Film[]; blurImgs: string[] } | undefined;
 }) {
   return (
     <section>
@@ -39,7 +40,7 @@ export default function FilmGrid({
         </div>
 
         <div className="grid grid-cols-2 gap-3 xs:grid-cols-3 xxl:grid-cols-4">
-          {data.content.map((movie: any, i: number) => {
+          {data?.content.map((movie: any, i: number) => {
             return (
               <Link
                 href={isMovie ? `/movie/${movie.id}` : `/series/${movie.id}`}

@@ -16,6 +16,8 @@ import {
   SEARCH_MOVIE_CASTS_API,
 } from "../config";
 
+import { Cast } from "@/lib/type";
+
 const USER_PLACEHOLDER_IMAGE = "/assets/user.png";
 
 export const fetchMovieClick = async function (movieId: string) {
@@ -57,7 +59,7 @@ export const fetchMovieClick = async function (movieId: string) {
 
     const castImgUrls: string[] = [];
 
-    const castData = cast.slice(0, 4).map((cast: any) => {
+    const castData: Cast[] = cast.slice(0, 4).map((cast: any) => {
       const castImg = cast.profile_path
         ? MOVIE_IMG_URL(cast.profile_path)
         : USER_PLACEHOLDER_IMAGE;
@@ -79,7 +81,7 @@ export const fetchMovieClick = async function (movieId: string) {
     // if cast img exist will have an own property
     // i.e, (blurredImg) responsible for applying the blurred img
     let blurImgsIndex = 0;
-    castData.forEach((cast: any) => {
+    castData.forEach((cast: Cast) => {
       if (cast.hasBlur) {
         cast.blurredImg = castBlurredUrls[blurImgsIndex];
         ++blurImgsIndex;
