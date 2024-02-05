@@ -6,7 +6,7 @@ import {
   optionConfig,
   REVALIDATE_TV_TRENDING,
   REVALIDATE_NORMAL,
-  MOVIE_IMG_URL,
+  FILM_IMG_URL,
   TV_TRENDING_API,
   TV_POPULAR_API,
   TV_ONAIR__API,
@@ -31,7 +31,7 @@ export const fetchTvTrending = async function () {
     const imgUrls: string[] = [];
 
     const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
-      const img = MOVIE_IMG_URL(tv.backdrop_path);
+      const img = FILM_IMG_URL(tv.backdrop_path);
 
       imgUrls.push(img);
 
@@ -67,7 +67,7 @@ export const fetchTvPopular = async function () {
     const imgUrls: string[] = [];
 
     const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
-      const img = MOVIE_IMG_URL(tv.backdrop_path);
+      const img = FILM_IMG_URL(tv.backdrop_path);
 
       imgUrls.push(img);
 
@@ -103,7 +103,7 @@ export const fetchTvOnAir = async function () {
     const imgUrls: string[] = [];
 
     const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
-      const img = MOVIE_IMG_URL(tv.backdrop_path);
+      const img = FILM_IMG_URL(tv.backdrop_path);
 
       imgUrls.push(img);
 
@@ -139,7 +139,7 @@ export const fetchTvTopRated = async function () {
     const imgUrls: string[] = [];
 
     const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
-      const img = MOVIE_IMG_URL(tv.backdrop_path);
+      const img = FILM_IMG_URL(tv.backdrop_path);
 
       imgUrls.push(img);
 

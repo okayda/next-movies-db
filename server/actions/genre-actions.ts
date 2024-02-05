@@ -2,13 +2,15 @@
 
 import { addBlurredUrls } from "@/lib/utils";
 import {
-  MOVIE_IMG_URL,
+  FILM_IMG_URL,
   REVALIDATE_NORMAL,
   SEARCH_MOVIE_TARGET_GENRE,
   SEARCH_TV_TARGET_GENRE,
   optionConfig,
 } from "../config";
-import { Film } from "@/lib/type";
+import { FilmBlur } from "@/lib/type";
+
+const FILM_PLACEHOLDER_IMAGE = "/assets/img-not-found.png";
 
 export const fetchTargetMovieGenre = async function (
   genreId: string,
@@ -28,26 +30,46 @@ export const fetchTargetMovieGenre = async function (
 
     const imgUrls: string[] = [];
 
-    const formattedData: Film[] = results.map((movie: any) => {
-      const img = MOVIE_IMG_URL(movie.backdrop_path);
+    const formattedData: FilmBlur[] = results.map((movie: any) => {
+      const img = movie.backdrop_path
+        ? FILM_IMG_URL(movie.backdrop_path)
+        : FILM_PLACEHOLDER_IMAGE;
 
-      imgUrls.push(img);
+      // if movie img exist will have a blurred img
+      if (movie.backdrop_path) imgUrls.push(img);
+
+      const date =
+        movie.release_date?.split("-")[0] ??
+        movie.first_air_date?.split("-")[0] ??
+        "N/A";
 
       return {
         id: movie.id,
         title: movie.title,
-        release_date: movie.release_date,
+        releaseDate: date,
+        isMovie: true,
+        typeFilm: "Movie",
+        hasBlur: movie.backdrop_path ? true : false,
         img,
       };
     });
 
     const blurredUrls = await addBlurredUrls(imgUrls);
 
+    // if movie img exist will have an own property
+    // i.e, (blurredImg) responsible for applying the blurred img
+    let blurImgsIndex = 0;
+    formattedData.forEach((film: FilmBlur) => {
+      if (film.hasBlur) {
+        film.blurredImg = blurredUrls[blurImgsIndex];
+        ++blurImgsIndex;
+      }
+    });
+
     return {
       initialPage: page,
       totalPages: total_pages,
       content: formattedData,
-      blurImgs: blurredUrls,
     };
   } catch (error) {
     console.log("Fecth target movie genre have a: ", error);
@@ -72,26 +94,46 @@ export const fetchTargetTvGenre = async function (
 
     const imgUrls: string[] = [];
 
-    const formattedData: Film[] = results.map((series: any) => {
-      const img = MOVIE_IMG_URL(series.backdrop_path);
+    const formattedData: FilmBlur[] = results.map((series: any) => {
+      const img = series.backdrop_path
+        ? FILM_IMG_URL(series.backdrop_path)
+        : FILM_PLACEHOLDER_IMAGE;
 
-      imgUrls.push(img);
+      // if movie img exist will have a blurred img
+      if (series.backdrop_path) imgUrls.push(img);
+
+      const date =
+        series.release_date?.split("-")[0] ??
+        series.first_air_date?.split("-")[0] ??
+        "N/A";
 
       return {
         id: series.id,
         title: series.name,
-        releaseDate: series.first_air_date,
+        releaseDate: date,
+        isMovie: false,
+        typeFilm: "TV Series",
+        hasBlur: series.backdrop_path ? true : false,
         img,
       };
     });
 
     const blurredUrls = await addBlurredUrls(imgUrls);
 
+    // if series img exist will have an own property
+    // i.e, (blurredImg) responsible for applying the blurred img
+    let blurImgsIndex = 0;
+    formattedData.forEach((film: FilmBlur) => {
+      if (film.hasBlur) {
+        film.blurredImg = blurredUrls[blurImgsIndex];
+        ++blurImgsIndex;
+      }
+    });
+
     return {
       initialPage: page,
       totalPages: total_pages,
       content: formattedData,
-      blurImgs: blurredUrls,
     };
   } catch (error) {
     console.log("Fecth target TV series genre have a: ", error);

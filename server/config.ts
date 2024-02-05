@@ -13,8 +13,8 @@ export const REVALIDATE_MOVIES_TRENDING = 3600; // 1 Hour
 export const REVALIDATE_TV_TRENDING = 86400; // 24 Hours
 
 // *** TMDB APIs ***
-// Movies
-export const MOVIE_IMG_URL = (imgId: number) =>
+export const FILM_IMG_URL = (imgId: number) =>
+  // Movies
   `https://image.tmdb.org/t/p/original${imgId}`;
 
 export const MOVIES_TRENDING_API =
@@ -56,13 +56,13 @@ export const SEARCH_SERIES_CASTS_API = (seriesId: string) => `
 https://api.themoviedb.org/3/tv/${seriesId}/credits`;
 
 // Seach Movie Genre
-export const SEARCH_MOVIE_TARGET_GENRE = (genreId: any, pageNum: any) =>
+export const SEARCH_MOVIE_TARGET_GENRE = (genreId: string, pageNum: number) =>
   `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${pageNum}&sort_by=popularity.desc&with_genres=${genreId}`;
 
 // Search TV Genre
-export const SEARCH_TV_TARGET_GENRE = (genreId: any, pageNum: any) =>
+export const SEARCH_TV_TARGET_GENRE = (genreId: string, pageNum: number) =>
   `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=${pageNum}&sort_by=popularity.desc&with_genres=${genreId}`;
 
 // SEARCH BAR
-export const SEARCH_BAR_FILMS = (filmName: any, pageNum: any) =>
+export const SEARCH_BAR_FILMS = (filmName: string, pageNum: number) =>
   `https://api.themoviedb.org/3/search/multi?query=${filmName}&include_adult=false&language=en-US&page=${pageNum}`;

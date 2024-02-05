@@ -10,7 +10,7 @@ import {
 
 import {
   optionConfig,
-  MOVIE_IMG_URL,
+  FILM_IMG_URL,
   REVALIDATE_NORMAL,
   SEARCH_MOVIE_API,
   SEARCH_MOVIE_CASTS_API,
@@ -55,13 +55,13 @@ export const fetchMovieClick = async function (movieId: string) {
 
     const { cast } = await resCastPeoples.json();
 
-    const filmImgUrl = MOVIE_IMG_URL(poster_path);
+    const filmImgUrl = FILM_IMG_URL(poster_path);
 
     const castImgUrls: string[] = [];
 
     const castData: Cast[] = cast.slice(0, 4).map((cast: any) => {
       const castImg = cast.profile_path
-        ? MOVIE_IMG_URL(cast.profile_path)
+        ? FILM_IMG_URL(cast.profile_path)
         : USER_PLACEHOLDER_IMAGE;
 
       // if cast img exist will have a blurred img

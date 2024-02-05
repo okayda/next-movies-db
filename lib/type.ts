@@ -1,5 +1,3 @@
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
-
 export type Film = {
   id: number;
   title: string;
@@ -7,8 +5,7 @@ export type Film = {
   img: string;
 };
 
-// TV Series
-export type Series = {
+export type FilmBlur = {
   id: number;
   title: string;
   releaseDate: string;

@@ -6,7 +6,11 @@ export default async function page({ params }: { params: { id: string } }) {
 
   return (
     <section>
-      <FilmsGrid genreName={genreId} asyncFunc={fetchTargetMovieGenre} />
+      <FilmsGrid
+        isFor="movie"
+        genreId={genreId}
+        asyncFunc={fetchTargetMovieGenre}
+      />
     </section>
   );
 }

@@ -15,7 +15,12 @@ export default function GenresCardGrid({
     <div className="mx-auto max-w-[1100px] pb-[120px] pt-8 xl:pt-4">
       <div className="grid grid-cols-1 gap-3 xxs:grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {data.map((genre: Genres, i: number) => (
-          <Link key={genre.id} href={`/${type}/genre/${genre.id}?page=1`}>
+          <Link
+            key={genre.id}
+            href={`/${type}/genre/${
+              genre.id
+            }?name=${genre.name.toLowerCase()}&page=1`}
+          >
             <FadeDiv
               index={i}
               duration={0.5}

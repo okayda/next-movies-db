@@ -3,12 +3,12 @@
 import { addBlurredUrls } from "@/lib/utils";
 
 import {
-  MOVIE_IMG_URL,
+  FILM_IMG_URL,
   REVALIDATE_NORMAL,
   SEARCH_BAR_FILMS,
   optionConfig,
 } from "../config";
-import { Series } from "@/lib/type";
+import { FilmBlur } from "@/lib/type";
 
 const FILM_PLACEHOLDER_IMAGE = "/assets/img-not-found.png";
 
@@ -30,9 +30,9 @@ export const fetchSearchFilms = async function (
 
     const imgUrls: string[] = [];
 
-    const formattedData: Series[] = results.map((film: any) => {
+    const formattedData: FilmBlur[] = results.map((film: any) => {
       const img = film.backdrop_path
-        ? MOVIE_IMG_URL(film.backdrop_path)
+        ? FILM_IMG_URL(film.backdrop_path)
         : FILM_PLACEHOLDER_IMAGE;
 
       // (film) = Movie or TV, img
@@ -60,7 +60,7 @@ export const fetchSearchFilms = async function (
     // if film img exist will have an own property
     // i.e, (blurredImg) responsible for applying the blurred img
     let blurImgsIndex = 0;
-    formattedData.forEach((film: Series) => {
+    formattedData.forEach((film: FilmBlur) => {
       if (film.hasBlur) {
         film.blurredImg = blurredUrls[blurImgsIndex];
         ++blurImgsIndex;

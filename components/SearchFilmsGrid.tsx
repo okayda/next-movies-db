@@ -17,8 +17,13 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { FilmBlur } from "@/lib/type";
 
 const intialPage: number = 1;
+
+const MOVIE_ICON = "/assets/gray-movies.svg";
+
+const TV_ICON = "/assets/gray-series.svg";
 
 export default function SearchFilmsGrid({
   filmName,
@@ -67,11 +72,9 @@ export default function SearchFilmsGrid({
             <span className="text-[#f1f1f1]">"{searchFilm}"</span>
           </h2>
 
-          <div className="xll:grid-cols-4 grid grid-cols-2 gap-3 pb-[60px] xs:grid-cols-3 sm:gap-7 xl:pt-0">
-            {data?.content.map((film: any) => {
-              const filmIcon = film?.isMovie
-                ? "/assets/gray-movies.svg"
-                : "/assets/gray-series.svg";
+          <div className="grid grid-cols-2 gap-3 pb-[60px] xs:grid-cols-3 sm:gap-7 xl:pt-0 xll:grid-cols-4">
+            {data?.content.map((film: FilmBlur) => {
+              const filmIcon = film?.isMovie ? MOVIE_ICON : TV_ICON;
 
               const isMovie = film.isMovie;
 

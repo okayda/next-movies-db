@@ -10,7 +10,7 @@ import {
 
 import {
   optionConfig,
-  MOVIE_IMG_URL,
+  FILM_IMG_URL,
   REVALIDATE_NORMAL,
   SEARCH_SERIES_API,
   SEARCH_SERIES_CASTS_API,
@@ -55,16 +55,16 @@ export const fetchSeriesClick = async function (seriesId: string) {
 
     const { cast } = await res2.json();
 
-    const filmImgUrl = MOVIE_IMG_URL(poster_path);
+    const filmImgUrl = FILM_IMG_URL(poster_path);
 
     const castImgUrls: string[] = [];
 
     const castData: Cast[] = cast.slice(0, 4).map((cast: any) => {
       const castImg = cast.profile_path
-        ? MOVIE_IMG_URL(cast.profile_path)
+        ? FILM_IMG_URL(cast.profile_path)
         : USER_PLACEHOLDER_IMAGE;
 
-      if (cast.profile_path) castImgUrls.push(MOVIE_IMG_URL(cast.profile_path));
+      if (cast.profile_path) castImgUrls.push(FILM_IMG_URL(cast.profile_path));
 
       return {
         id: cast.id,

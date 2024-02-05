@@ -6,7 +6,7 @@ import {
   optionConfig,
   REVALIDATE_MOVIES_TRENDING,
   REVALIDATE_NORMAL,
-  MOVIE_IMG_URL,
+  FILM_IMG_URL,
   MOVIES_POPULAR_API,
   MOVIES_TOP_RATED_API,
   MOVIES_UPCOMING_API,
@@ -31,7 +31,7 @@ export const fetchMoviesTrending = async function () {
     const imgUrls: string[] = [];
 
     const formattedData: Film[] = results.slice(0, 6).map((movie: any) => {
-      const img = MOVIE_IMG_URL(movie.backdrop_path);
+      const img = FILM_IMG_URL(movie.backdrop_path);
 
       imgUrls.push(img);
 
@@ -67,7 +67,7 @@ export const fetchMoviesPopular = async function () {
     const imgUrls: string[] = [];
 
     const formattedData: Film[] = results.slice(0, 6).map((movie: any) => {
-      const img = MOVIE_IMG_URL(movie.backdrop_path);
+      const img = FILM_IMG_URL(movie.backdrop_path);
 
       imgUrls.push(img);
 
@@ -103,7 +103,7 @@ export const fetchMoviesTopRated = async function () {
     const imgUrls: string[] = [];
 
     const formattedData: Film[] = results.slice(0, 6).map((movie: any) => {
-      const img = MOVIE_IMG_URL(movie.backdrop_path);
+      const img = FILM_IMG_URL(movie.backdrop_path);
 
       imgUrls.push(img);
 
@@ -139,7 +139,7 @@ export const fetchMoviesUpcoming = async function () {
     const imgUrls: string[] = [];
 
     const formattedData: Film[] = results.slice(0, 6).map((movie: any) => {
-      const img = MOVIE_IMG_URL(movie.backdrop_path);
+      const img = FILM_IMG_URL(movie.backdrop_path);
 
       imgUrls.push(img);
 
