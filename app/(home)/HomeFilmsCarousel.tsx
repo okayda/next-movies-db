@@ -18,7 +18,7 @@ import clsx from "clsx";
 import FadeDiv from "@/components/FadeDiv";
 import { Film } from "@/lib/type";
 
-export default function FilmCarousel({
+export default function HomeFilmsCarousel({
   data,
   isMovie = true,
 }: {

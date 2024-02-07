@@ -4,7 +4,7 @@ import clsx from "clsx";
 import FadeDiv from "@/components/FadeDiv";
 import { Film } from "@/lib/type";
 
-export default function FilmGrid({
+export default function HomeFilmsGrid({
   title = "Anything",
   isMovie = true,
   data,
