@@ -20,6 +20,8 @@ import { Cast } from "@/lib/type";
 
 const USER_PLACEHOLDER_IMAGE = "/assets/user.png";
 
+// Tv Series Details
+
 export const fetchSeriesClick = async function (seriesId: string) {
   try {
     const res1 = await fetch(SEARCH_SERIES_API(seriesId), {
@@ -55,7 +57,7 @@ export const fetchSeriesClick = async function (seriesId: string) {
 
     const { cast } = await res2.json();
 
-    const filmImgUrl = FILM_IMG_URL(poster_path);
+    const SeriesImgUrl = FILM_IMG_URL(poster_path);
 
     const castImgUrls: string[] = [];
 
@@ -88,8 +90,8 @@ export const fetchSeriesClick = async function (seriesId: string) {
     });
 
     return {
-      img: filmImgUrl,
-      imgBlur: await getBase64(filmImgUrl),
+      img: SeriesImgUrl,
+      imgBlur: await getBase64(SeriesImgUrl),
       title: name,
       tagline,
       stars: Number(convertRating(vote_average)),

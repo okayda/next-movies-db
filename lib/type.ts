@@ -1,10 +1,3 @@
-export type Film = {
-  id: number;
-  title: string;
-  release_date: string;
-  img: string;
-};
-
 export type FilmBlur = {
   id: number;
   title: string;

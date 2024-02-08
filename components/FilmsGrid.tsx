@@ -73,7 +73,7 @@ export default function FilmsGrid({
   return (
     <div className="pb-[100px]">
       <div>
-        <h2 className="mb-6 text-[20px] font-light text-[#f1f1f1]  md:mb-8 md:text-[32px]">
+        <h2 className="my-6 text-[20px] font-light text-[#f1f1f1]  md:my-8 md:text-[32px]">
           {genreName
             .split(" ")
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))

@@ -1,6 +1,6 @@
 "use server";
 
-import { addBlurredUrls } from "@/lib/utils";
+import { addBlurredUrls, convertYear } from "@/lib/utils";
 
 import {
   optionConfig,
@@ -13,7 +13,9 @@ import {
   TV_TOP_RATED_API,
 } from "../config";
 
-import { Film } from "@/lib/type";
+import { FilmBlur } from "@/lib/type";
+
+const FILM_PLACEHOLDER_IMAGE = "/assets/img-not-found.png";
 
 export const fetchTvTrending = async function () {
   try {
@@ -30,22 +32,38 @@ export const fetchTvTrending = async function () {
 
     const imgUrls: string[] = [];
 
-    const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
-      const img = FILM_IMG_URL(tv.backdrop_path);
+    const formattedData: FilmBlur[] = results.slice(0, 6).map((series: any) => {
+      const img = series.backdrop_path
+        ? FILM_IMG_URL(series.backdrop_path)
+        : FILM_PLACEHOLDER_IMAGE;
 
-      imgUrls.push(img);
+      // if Tv series img exist will have a blurred img
+      if (series.backdrop_path) imgUrls.push(img);
 
       return {
-        id: tv.id,
-        title: tv.name,
-        release_date: tv.first_air_date,
+        id: series.id,
+        title: series.name,
+        releaseDate: convertYear(series.first_air_date),
+        isMovie: false,
+        typeFilm: "TV Series",
+        hasBlur: series.backdrop_path ? true : false,
         img,
       };
     });
 
     const blurredUrls = await addBlurredUrls(imgUrls);
 
-    return { content: formattedData, blurImgs: blurredUrls };
+    // if Tv series img exist will have an own property
+    // i.e, (blurredImg) responsible for applying the blurred img
+    let blurImgsIndex = 0;
+    formattedData.forEach((series: FilmBlur) => {
+      if (series.hasBlur) {
+        series.blurredImg = blurredUrls[blurImgsIndex];
+        ++blurImgsIndex;
+      }
+    });
+
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth tv trending have a: ", error);
   }
@@ -66,22 +84,38 @@ export const fetchTvPopular = async function () {
 
     const imgUrls: string[] = [];
 
-    const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
-      const img = FILM_IMG_URL(tv.backdrop_path);
+    const formattedData: FilmBlur[] = results.slice(0, 6).map((series: any) => {
+      const img = series.backdrop_path
+        ? FILM_IMG_URL(series.backdrop_path)
+        : FILM_PLACEHOLDER_IMAGE;
 
-      imgUrls.push(img);
+      // if Tv series img exist will have a blurred img
+      if (series.backdrop_path) imgUrls.push(img);
 
       return {
-        id: tv.id,
-        title: tv.name,
-        release_date: tv.first_air_date,
+        id: series.id,
+        title: series.name,
+        releaseDate: convertYear(series.first_air_date),
+        isMovie: false,
+        typeFilm: "TV Series",
+        hasBlur: series.backdrop_path ? true : false,
         img,
       };
     });
 
     const blurredUrls = await addBlurredUrls(imgUrls);
 
-    return { content: formattedData, blurImgs: blurredUrls };
+    // if Tv series img exist will have an own property
+    // i.e, (blurredImg) responsible for applying the blurred img
+    let blurImgsIndex = 0;
+    formattedData.forEach((series: FilmBlur) => {
+      if (series.hasBlur) {
+        series.blurredImg = blurredUrls[blurImgsIndex];
+        ++blurImgsIndex;
+      }
+    });
+
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth tv popular have a: ", error);
   }
@@ -102,22 +136,38 @@ export const fetchTvOnAir = async function () {
 
     const imgUrls: string[] = [];
 
-    const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
-      const img = FILM_IMG_URL(tv.backdrop_path);
+    const formattedData: FilmBlur[] = results.slice(0, 6).map((series: any) => {
+      const img = series.backdrop_path
+        ? FILM_IMG_URL(series.backdrop_path)
+        : FILM_PLACEHOLDER_IMAGE;
 
-      imgUrls.push(img);
+      // if Tv series img exist will have a blurred img
+      if (series.backdrop_path) imgUrls.push(img);
 
       return {
-        id: tv.id,
-        title: tv.name,
-        release_date: tv.first_air_date,
+        id: series.id,
+        title: series.name,
+        releaseDate: convertYear(series.first_air_date),
+        isMovie: false,
+        typeFilm: "TV Series",
+        hasBlur: series.backdrop_path ? true : false,
         img,
       };
     });
 
     const blurredUrls = await addBlurredUrls(imgUrls);
 
-    return { content: formattedData, blurImgs: blurredUrls };
+    // if Tv series img exist will have an own property
+    // i.e, (blurredImg) responsible for applying the blurred img
+    let blurImgsIndex = 0;
+    formattedData.forEach((series: FilmBlur) => {
+      if (series.hasBlur) {
+        series.blurredImg = blurredUrls[blurImgsIndex];
+        ++blurImgsIndex;
+      }
+    });
+
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth tv on air have a: ", error);
   }
@@ -138,22 +188,38 @@ export const fetchTvTopRated = async function () {
 
     const imgUrls: string[] = [];
 
-    const formattedData: Film[] = results.slice(0, 6).map((tv: any) => {
-      const img = FILM_IMG_URL(tv.backdrop_path);
+    const formattedData: FilmBlur[] = results.slice(0, 6).map((series: any) => {
+      const img = series.backdrop_path
+        ? FILM_IMG_URL(series.backdrop_path)
+        : FILM_PLACEHOLDER_IMAGE;
 
-      imgUrls.push(img);
+      // if Tv series img exist will have a blurred img
+      if (series.backdrop_path) imgUrls.push(img);
 
       return {
-        id: tv.id,
-        title: tv.name,
-        release_date: tv.first_air_date,
+        id: series.id,
+        title: series.name,
+        releaseDate: convertYear(series.first_air_date),
+        isMovie: false,
+        typeFilm: "TV Series",
+        hasBlur: series.backdrop_path ? true : false,
         img,
       };
     });
 
     const blurredUrls = await addBlurredUrls(imgUrls);
 
-    return { content: formattedData, blurImgs: blurredUrls };
+    // if Tv series img exist will have an own property
+    // i.e, (blurredImg) responsible for applying the blurred img
+    let blurImgsIndex = 0;
+    formattedData.forEach((series: FilmBlur) => {
+      if (series.hasBlur) {
+        series.blurredImg = blurredUrls[blurImgsIndex];
+        ++blurImgsIndex;
+      }
+    });
+
+    return { content: formattedData };
   } catch (error) {
     console.log("Fecth tv top rated have a: ", error);
   }

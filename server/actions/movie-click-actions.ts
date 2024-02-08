@@ -20,6 +20,8 @@ import { Cast } from "@/lib/type";
 
 const USER_PLACEHOLDER_IMAGE = "/assets/user.png";
 
+// Movie Details
+
 export const fetchMovieClick = async function (movieId: string) {
   try {
     const resMovieDetails = await fetch(SEARCH_MOVIE_API(movieId), {
@@ -55,7 +57,7 @@ export const fetchMovieClick = async function (movieId: string) {
 
     const { cast } = await resCastPeoples.json();
 
-    const filmImgUrl = FILM_IMG_URL(poster_path);
+    const movieImgUrl = FILM_IMG_URL(poster_path);
 
     const castImgUrls: string[] = [];
 
@@ -89,8 +91,8 @@ export const fetchMovieClick = async function (movieId: string) {
     });
 
     return {
-      img: filmImgUrl,
-      imgBlur: await getBase64(filmImgUrl),
+      img: movieImgUrl,
+      imgBlur: await getBase64(movieImgUrl),
       title,
       tagline,
       stars: convertRating(vote_average),

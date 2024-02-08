@@ -70,7 +70,7 @@ export default function SearchFilmsGrid({
   return (
     <div className="pb-[100px]">
       <div className="pt-8 md:pt-12">
-        <h2 className="mb-6 text-[20px] font-light  md:mb-8 md:text-[32px]">
+        <h2 className="my-6 text-[20px] font-light md:my-8 md:text-[32px]">
           <span className="text-[#c3c3c6]">Found</span>{" "}
           <span className="text-[#f1f1f1]">{totalResults}</span>{" "}
           <span className="text-[#c3c3c6]">results for</span>{" "}

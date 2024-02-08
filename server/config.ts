@@ -18,7 +18,7 @@ export const FILM_IMG_URL = (imgId: number) =>
   `https://image.tmdb.org/t/p/original${imgId}`;
 
 export const MOVIES_TRENDING_API =
-  "https://api.themoviedb.org/3/trending/all/week";
+  "https://api.themoviedb.org/3/trending/all/day";
 
 export const MOVIES_POPULAR_API = "https://api.themoviedb.org/3/movie/popular";
 

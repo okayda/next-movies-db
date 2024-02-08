@@ -16,13 +16,17 @@ import {
 
 import clsx from "clsx";
 import FadeDiv from "@/components/FadeDiv";
-import { Film } from "@/lib/type";
+import { FilmBlur } from "@/lib/type";
+
+const MOVIE_ICON = "/assets/gray-movies.svg";
+
+const TV_ICON = "/assets/gray-series.svg";
 
 export default function HomeFilmsCarousel({
   data,
   isMovie = true,
 }: {
-  data: { content: Film[]; blurImgs: string[] } | undefined;
+  data: { content: FilmBlur[] } | undefined;
   isMovie?: boolean;
 }) {
   return (
@@ -51,7 +55,7 @@ export default function HomeFilmsCarousel({
           </Link>
         </div>
 
-        <div className="xs:px-14">
+        <div className="sm:px-14">
           <Carousel
             className="w-full"
             opts={{
@@ -65,31 +69,55 @@ export default function HomeFilmsCarousel({
             ]}
           >
             <CarouselContent className="-ml-1 w-full">
-              {data?.content.map((movie: any, i: number) => {
+              {data?.content.map((film: FilmBlur, i: number) => {
+                const filmIcon = film?.isMovie ? MOVIE_ICON : TV_ICON;
+
+                const isMovie = film.isMovie;
+
                 return (
                   <CarouselItem
-                    key={movie.id}
-                    className="h-[180px] pl-1 xxs:h-[220px] sm:h-[300px] md:h-[190px] md:basis-1/2 xl:basis-1/3"
+                    key={film.id}
+                    className="relative h-[180px] pl-1 xxs:h-[220px] xs:h-[300px] md:h-[360px] xl:h-[300px] xl:basis-1/2 "
                   >
                     <FadeDiv index={i} duration={0.6} className="h-full ">
                       <div className="h-full p-1">
-                        <Card className="shadow-carousel h-full overflow-hidden rounded-md border-none bg-[#1c1c1c]">
+                        <Card className="shadow-carousel relative h-full overflow-hidden rounded-md border-none bg-[#1c1c1c]">
                           <Link
                             href={
                               isMovie
-                                ? `/movie/${movie.id}`
-                                : `/series/${movie.id}`
+                                ? `/movie/${film.id}`
+                                : `/series/${film.id}`
                             }
                           >
                             <Image
-                              src={movie.img}
-                              alt={movie.title || "Movie"}
-                              width={320}
-                              height={190}
+                              src={film.img}
+                              alt={film.title || "Movie"}
+                              width={640}
+                              height={280}
                               className="h-full w-full object-cover"
-                              placeholder="blur"
-                              blurDataURL={data.blurImgs[i]}
+                              {...(film.hasBlur && {
+                                placeholder: "blur",
+                                blurDataURL: film.blurredImg,
+                              })}
                             />
+                            <div className="absolute bottom-0 left-0 h-auto w-full bg-gradient-to-t from-[rgba(0,0,0,0.85)] to-transparent">
+                              <div className="px-4 pb-3 pt-9 font-light text-white">
+                                <div className="flex items-center gap-2 text-base ">
+                                  <span>{film.releaseDate}</span>
+                                  •
+                                  <Image
+                                    src={filmIcon}
+                                    alt=""
+                                    width={12}
+                                    height={12}
+                                  />
+                                  <span>{film.typeFilm}</span>
+                                </div>
+                                <h3 className="text-[28px] font-medium tracking-wide">
+                                  {film.title}
+                                </h3>
+                              </div>
+                            </div>
                           </Link>
                         </Card>
                       </div>
@@ -99,7 +127,7 @@ export default function HomeFilmsCarousel({
               })}
             </CarouselContent>
 
-            <div className="hidden xs:block">
+            <div className="hidden sm:block">
               <CarouselPrevious className="shadow-nav bg-[#1c1c1c] text-[#f1f1f1] hover:bg-[#2c2c2c] hover:text-[#f1f1f1]" />
               <CarouselNext className="shadow-nav bg-[#1c1c1c] text-[#f1f1f1] hover:bg-[#2c2c2c] hover:text-[#f1f1f1]" />
             </div>

@@ -8,6 +8,7 @@ import {
   SEARCH_TV_TARGET_GENRE,
   optionConfig,
 } from "../config";
+
 import { FilmBlur } from "@/lib/type";
 
 const FILM_PLACEHOLDER_IMAGE = "/assets/img-not-found.png";
@@ -99,7 +100,7 @@ export const fetchTargetTvGenre = async function (
         ? FILM_IMG_URL(series.backdrop_path)
         : FILM_PLACEHOLDER_IMAGE;
 
-      // if movie img exist will have a blurred img
+      // if Tv series img exist will have a blurred img
       if (series.backdrop_path) imgUrls.push(img);
 
       const date =
@@ -120,7 +121,7 @@ export const fetchTargetTvGenre = async function (
 
     const blurredUrls = await addBlurredUrls(imgUrls);
 
-    // if series img exist will have an own property
+    // if Tv series img exist will have an own property
     // i.e, (blurredImg) responsible for applying the blurred img
     let blurImgsIndex = 0;
     formattedData.forEach((film: FilmBlur) => {
