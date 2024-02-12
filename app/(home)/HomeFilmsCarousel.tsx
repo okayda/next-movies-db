@@ -48,8 +48,8 @@ export default function HomeFilmsCarousel({
           </div>
 
           <Link
-            href="/"
-            className="text-xs uppercase tracking-wide text-[#c1c1c1] md:text-sm"
+            href={`/${isMovie ? "movie" : "series"}/trending?page=1`}
+            className="border border-b border-transparent pb-1 text-xs uppercase tracking-wide text-[#c1c1c1] hover:border-b-[#c1c1c1]"
           >
             see more
           </Link>

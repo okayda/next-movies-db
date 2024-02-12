@@ -14,11 +14,23 @@ export const REVALIDATE_TV_TRENDING = 86400; // 24 Hours
 
 // *** TMDB APIs ***
 export const FILM_IMG_URL = (imgId: number) =>
-  // Movies
   `https://image.tmdb.org/t/p/original${imgId}`;
 
+// Movies
+export const MOVIES_TRENDING_PAGES_API = (pageNum: number) =>
+  `https://api.themoviedb.org/3/trending/movie/day?page=${pageNum}`;
+
+export const MOVIES_POPULAR_PAGES_API = (pageNum: number) =>
+  `https://api.themoviedb.org/3/movie/popular?page=${pageNum}`;
+
+export const MOVIES_TOP_RATED_PAGES_API = (pageNum: number) =>
+  `https://api.themoviedb.org/3/movie/top_rated?page=${pageNum}`;
+
+export const MOVIES_UPCOMING_PAGES_API = (pageNum: number) =>
+  `https://api.themoviedb.org/3/movie/upcoming?page=${pageNum}`;
+
 export const MOVIES_TRENDING_API =
-  "https://api.themoviedb.org/3/trending/all/day";
+  "https://api.themoviedb.org/3/trending/movie/day";
 
 export const MOVIES_POPULAR_API = "https://api.themoviedb.org/3/movie/popular";
 
@@ -29,11 +41,24 @@ export const MOVIES_UPCOMING_API =
   "https://api.themoviedb.org/3/movie/upcoming";
 
 // Series
+
+export const TV_TRENDING_PAGES_API = (pageNum: number) =>
+  `https://api.themoviedb.org/3/trending/tv/day?page=${pageNum}`;
+
+export const TV_POPULAR_PAGES_API = (pageNum: number) =>
+  `https://api.themoviedb.org/3/tv/popular?page=${pageNum}`;
+
+export const TV_ONAIR_PAGES_API = (pageNum: number) =>
+  `https://api.themoviedb.org/3/tv/on_the_air?page=${pageNum}`;
+
+export const TV_TOP_RATED_PAGES_API = (pageNum: number) =>
+  `https://api.themoviedb.org/3/tv/top_rated?page=${pageNum}`;
+
 export const TV_TRENDING_API = "https://api.themoviedb.org/3/trending/tv/day";
 
 export const TV_POPULAR_API = "https://api.themoviedb.org/3/tv/popular";
 
-export const TV_ONAIR__API = "https://api.themoviedb.org/3/tv/on_the_air";
+export const TV_ONAIR_API = "https://api.themoviedb.org/3/tv/on_the_air";
 
 export const TV_TOP_RATED_API = "https://api.themoviedb.org/3/tv/top_rated";
 

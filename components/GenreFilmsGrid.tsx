@@ -27,7 +27,7 @@ const MOVIE_ICON = "/assets/gray-movies.svg";
 
 const TV_ICON = "/assets/gray-series.svg";
 
-export default function FilmsGrid({
+export default function GenreFilmsGrid({
   isFor,
   genreId,
   asyncFunc,
@@ -98,10 +98,13 @@ export default function FilmsGrid({
                       alt={film.title}
                       width={400}
                       height={225}
-                      className={clsx("object-cover text-[#f1f1f1]", {
-                        "transition-transform duration-300 hover:scale-110 lg:h-[160px]":
-                          film.hasBlur,
-                      })}
+                      className={clsx(
+                        "object-cover text-[#f1f1f1] lg:h-[160px]",
+                        {
+                          "transition-transform duration-300 hover:scale-110":
+                            film.hasBlur,
+                        },
+                      )}
                       {...(film.hasBlur && {
                         placeholder: "blur",
                         blurDataURL: film.blurredImg,

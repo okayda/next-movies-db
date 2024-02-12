@@ -36,8 +36,10 @@ export default function HomeFilmsGrid({
           </div>
 
           <Link
-            href="/"
-            className="text-xs uppercase tracking-wide text-[#c1c1c1] md:text-sm"
+            href={`/${isMovie ? "movie" : "series"}/${title
+              .toLowerCase()
+              .replace(/\s+/g, "")}?page=1`}
+            className="border border-b border-transparent pb-1 text-xs uppercase tracking-wide text-[#c1c1c1] hover:border-b-[#c1c1c1]"
           >
             see more
           </Link>
@@ -73,13 +75,16 @@ export default function HomeFilmsGrid({
                     <Image
                       src={film.img}
                       alt={film.title}
-                      width={640}
-                      height={280}
-                      className={clsx("object-cover text-[#f1f1f1]", {
-                        "transition-transform duration-300 hover:scale-110 lg:h-[160px]":
-                          film.hasBlur,
-                        "xxl:h-[320px] xxl:w-full": i >= 4,
-                      })}
+                      width={400}
+                      height={225}
+                      className={clsx(
+                        "object-cover text-[#f1f1f1] lg:h-[160px]",
+                        {
+                          "transition-transform duration-300 hover:scale-110":
+                            film.hasBlur,
+                          "xxl:h-[320px] xxl:w-full": i >= 4,
+                        },
+                      )}
                       {...(film.hasBlur && {
                         placeholder: "blur",
                         blurDataURL: film.blurredImg,

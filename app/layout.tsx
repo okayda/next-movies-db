@@ -7,7 +7,10 @@ import Footer from "@/components/Footer";
 import QueryProvider from "@/lib/tanstack-query/QueryProvider";
 import SearchBar from "@/components/SearchBar";
 
-const outfit = Outfit({ subsets: ["latin"] });
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["100", "300", "400", "500", "700", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Next Movies DB",
@@ -23,7 +26,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${outfit.className} antialiased`}>
         <div className="mx-auto max-w-xxl px-3 py-6 md:px-6">
-          {/* <div className="mx-auto  px-3 py-6 md:px-6"> */}
           <Nav />
 
           <SearchBar placeholder="Search for movies or TV series" />

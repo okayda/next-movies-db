@@ -1,25 +1,24 @@
 "use server";
 
-import { addBlurredUrls, convertYear } from "@/lib/utils";
+import { FilmBlur } from "@/lib/type";
 
 import {
-  optionConfig,
-  REVALIDATE_TV_TRENDING,
-  REVALIDATE_NORMAL,
   FILM_IMG_URL,
-  TV_TRENDING_API,
-  TV_POPULAR_API,
-  TV_ONAIR_API,
-  TV_TOP_RATED_API,
+  TV_POPULAR_PAGES_API,
+  TV_TOP_RATED_PAGES_API,
+  TV_TRENDING_PAGES_API,
+  TV_ONAIR_PAGES_API,
+  REVALIDATE_TV_TRENDING,
+  optionConfig,
 } from "../config";
 
-import { FilmBlur } from "@/lib/type";
+import { addBlurredUrls, convertYear } from "@/lib/utils";
 
 const FILM_PLACEHOLDER_IMAGE = "/assets/img-not-found.png";
 
-export const fetchTvTrending = async function () {
+export const fetchTvPageTrending = async function (pageNum: number) {
   try {
-    const res = await fetch(TV_TRENDING_API, {
+    const res = await fetch(TV_TRENDING_PAGES_API(pageNum), {
       ...optionConfig,
       next: {
         revalidate: REVALIDATE_TV_TRENDING,
@@ -28,11 +27,11 @@ export const fetchTvTrending = async function () {
 
     if (!res.ok) throw Error;
 
-    const { results } = await res.json();
+    const { results, total_pages } = await res.json();
 
     const imgUrls: string[] = [];
 
-    const formattedData: FilmBlur[] = results.slice(0, 6).map((series: any) => {
+    const formattedData: FilmBlur[] = results.map((series: any) => {
       const img = series.backdrop_path
         ? FILM_IMG_URL(series.backdrop_path)
         : FILM_PLACEHOLDER_IMAGE;
@@ -63,28 +62,28 @@ export const fetchTvTrending = async function () {
       }
     });
 
-    return { content: formattedData };
+    return { content: formattedData, totalPages: total_pages };
   } catch (error) {
-    console.log("Fecth tv trending have a: ", error);
+    console.log("Fecth tv page trending have a: ", error);
   }
 };
 
-export const fetchTvPopular = async function () {
+export const fetchTvPagePopular = async function (pageNum: number) {
   try {
-    const res = await fetch(TV_POPULAR_API, {
+    const res = await fetch(TV_POPULAR_PAGES_API(pageNum), {
       ...optionConfig,
       next: {
-        revalidate: REVALIDATE_NORMAL,
+        revalidate: REVALIDATE_TV_TRENDING,
       },
     });
 
     if (!res.ok) throw Error;
 
-    const { results } = await res.json();
+    const { results, total_pages } = await res.json();
 
     const imgUrls: string[] = [];
 
-    const formattedData: FilmBlur[] = results.slice(0, 6).map((series: any) => {
+    const formattedData: FilmBlur[] = results.map((series: any) => {
       const img = series.backdrop_path
         ? FILM_IMG_URL(series.backdrop_path)
         : FILM_PLACEHOLDER_IMAGE;
@@ -115,28 +114,28 @@ export const fetchTvPopular = async function () {
       }
     });
 
-    return { content: formattedData };
+    return { content: formattedData, totalPages: total_pages };
   } catch (error) {
-    console.log("Fecth tv popular have a: ", error);
+    console.log("Fecth tv page popular have a: ", error);
   }
 };
 
-export const fetchTvOnAir = async function () {
+export const fetchTvPageToprated = async function (pageNum: number) {
   try {
-    const res = await fetch(TV_ONAIR_API, {
+    const res = await fetch(TV_TOP_RATED_PAGES_API(pageNum), {
       ...optionConfig,
       next: {
-        revalidate: REVALIDATE_NORMAL,
+        revalidate: REVALIDATE_TV_TRENDING,
       },
     });
 
     if (!res.ok) throw Error;
 
-    const { results } = await res.json();
+    const { results, total_pages } = await res.json();
 
     const imgUrls: string[] = [];
 
-    const formattedData: FilmBlur[] = results.slice(0, 6).map((series: any) => {
+    const formattedData: FilmBlur[] = results.map((series: any) => {
       const img = series.backdrop_path
         ? FILM_IMG_URL(series.backdrop_path)
         : FILM_PLACEHOLDER_IMAGE;
@@ -167,28 +166,28 @@ export const fetchTvOnAir = async function () {
       }
     });
 
-    return { content: formattedData };
+    return { content: formattedData, totalPages: total_pages };
   } catch (error) {
-    console.log("Fecth tv on air have a: ", error);
+    console.log("Fecth tv page top rated have a: ", error);
   }
 };
 
-export const fetchTvTopRated = async function () {
+export const fetchTvPageUpcoming = async function (pageNum: number) {
   try {
-    const res = await fetch(TV_TOP_RATED_API, {
+    const res = await fetch(TV_ONAIR_PAGES_API(pageNum), {
       ...optionConfig,
       next: {
-        revalidate: REVALIDATE_NORMAL,
+        revalidate: REVALIDATE_TV_TRENDING,
       },
     });
 
     if (!res.ok) throw Error;
 
-    const { results } = await res.json();
+    const { results, total_pages } = await res.json();
 
     const imgUrls: string[] = [];
 
-    const formattedData: FilmBlur[] = results.slice(0, 6).map((series: any) => {
+    const formattedData: FilmBlur[] = results.map((series: any) => {
       const img = series.backdrop_path
         ? FILM_IMG_URL(series.backdrop_path)
         : FILM_PLACEHOLDER_IMAGE;
@@ -219,8 +218,8 @@ export const fetchTvTopRated = async function () {
       }
     });
 
-    return { content: formattedData };
+    return { content: formattedData, totalPages: total_pages };
   } catch (error) {
-    console.log("Fecth tv top rated have a: ", error);
+    console.log("Fecth tv page upcoming have a: ", error);
   }
 };

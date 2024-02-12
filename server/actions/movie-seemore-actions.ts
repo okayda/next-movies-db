@@ -1,25 +1,24 @@
 "use server";
 
-import { addBlurredUrls, convertYear } from "@/lib/utils";
+import { FilmBlur } from "@/lib/type";
 
 import {
-  optionConfig,
-  REVALIDATE_MOVIES_TRENDING,
-  REVALIDATE_NORMAL,
   FILM_IMG_URL,
-  MOVIES_POPULAR_API,
-  MOVIES_TOP_RATED_API,
-  MOVIES_UPCOMING_API,
-  MOVIES_TRENDING_API,
+  MOVIES_POPULAR_PAGES_API,
+  MOVIES_TOP_RATED_PAGES_API,
+  MOVIES_TRENDING_PAGES_API,
+  MOVIES_UPCOMING_PAGES_API,
+  REVALIDATE_MOVIES_TRENDING,
+  optionConfig,
 } from "../config";
 
-import { FilmBlur } from "@/lib/type";
+import { addBlurredUrls, convertYear } from "@/lib/utils";
 
 const FILM_PLACEHOLDER_IMAGE = "/assets/img-not-found.png";
 
-export const fetchMoviesTrending = async function () {
+export const fetchMoviesPageTrending = async function (pageNum: number) {
   try {
-    const res = await fetch(MOVIES_TRENDING_API, {
+    const res = await fetch(MOVIES_TRENDING_PAGES_API(pageNum), {
       ...optionConfig,
       next: {
         revalidate: REVALIDATE_MOVIES_TRENDING,
@@ -28,11 +27,11 @@ export const fetchMoviesTrending = async function () {
 
     if (!res.ok) throw Error;
 
-    const { results } = await res.json();
+    const { results, total_pages } = await res.json();
 
     const imgUrls: string[] = [];
 
-    const formattedData: FilmBlur[] = results.slice(0, 6).map((movie: any) => {
+    const formattedData: FilmBlur[] = results.map((movie: any) => {
       const img = movie.backdrop_path
         ? FILM_IMG_URL(movie.backdrop_path)
         : FILM_PLACEHOLDER_IMAGE;
@@ -63,28 +62,28 @@ export const fetchMoviesTrending = async function () {
       }
     });
 
-    return { content: formattedData };
+    return { content: formattedData, totalPages: total_pages };
   } catch (error) {
-    console.log("Fecth movie trending have a: ", error);
+    console.log("Fecth movie page trending have a: ", error);
   }
 };
 
-export const fetchMoviesPopular = async function () {
+export const fetchMoviesPagePopular = async function (pageNum: number) {
   try {
-    const res = await fetch(MOVIES_POPULAR_API, {
+    const res = await fetch(MOVIES_POPULAR_PAGES_API(pageNum), {
       ...optionConfig,
       next: {
-        revalidate: REVALIDATE_NORMAL,
+        revalidate: REVALIDATE_MOVIES_TRENDING,
       },
     });
 
     if (!res.ok) throw Error;
 
-    const { results } = await res.json();
+    const { results, total_pages } = await res.json();
 
     const imgUrls: string[] = [];
 
-    const formattedData: FilmBlur[] = results.slice(0, 6).map((movie: any) => {
+    const formattedData: FilmBlur[] = results.map((movie: any) => {
       const img = movie.backdrop_path
         ? FILM_IMG_URL(movie.backdrop_path)
         : FILM_PLACEHOLDER_IMAGE;
@@ -115,28 +114,28 @@ export const fetchMoviesPopular = async function () {
       }
     });
 
-    return { content: formattedData };
+    return { content: formattedData, totalPages: total_pages };
   } catch (error) {
-    console.log("Fecth movie popular have a: ", error);
+    console.log("Fecth movie page popular have a: ", error);
   }
 };
 
-export const fetchMoviesTopRated = async function () {
+export const fetchMoviesPageTopRated = async function (pageNum: number) {
   try {
-    const res = await fetch(MOVIES_TOP_RATED_API, {
+    const res = await fetch(MOVIES_TOP_RATED_PAGES_API(pageNum), {
       ...optionConfig,
       next: {
-        revalidate: REVALIDATE_NORMAL,
+        revalidate: REVALIDATE_MOVIES_TRENDING,
       },
     });
 
     if (!res.ok) throw Error;
 
-    const { results } = await res.json();
+    const { results, total_pages } = await res.json();
 
     const imgUrls: string[] = [];
 
-    const formattedData: FilmBlur[] = results.slice(0, 6).map((movie: any) => {
+    const formattedData: FilmBlur[] = results.map((movie: any) => {
       const img = movie.backdrop_path
         ? FILM_IMG_URL(movie.backdrop_path)
         : FILM_PLACEHOLDER_IMAGE;
@@ -167,28 +166,28 @@ export const fetchMoviesTopRated = async function () {
       }
     });
 
-    return { content: formattedData };
+    return { content: formattedData, totalPages: total_pages };
   } catch (error) {
-    console.log("Fecth movie top rated have a: ", error);
+    console.log("Fecth movie page top rated have a: ", error);
   }
 };
 
-export const fetchMoviesUpcoming = async function () {
+export const fetchMoviesPageUpcoming = async function (pageNum: number) {
   try {
-    const res = await fetch(MOVIES_UPCOMING_API, {
+    const res = await fetch(MOVIES_UPCOMING_PAGES_API(pageNum), {
       ...optionConfig,
       next: {
-        revalidate: REVALIDATE_NORMAL,
+        revalidate: REVALIDATE_MOVIES_TRENDING,
       },
     });
 
     if (!res.ok) throw Error;
 
-    const { results } = await res.json();
+    const { results, total_pages } = await res.json();
 
     const imgUrls: string[] = [];
 
-    const formattedData: FilmBlur[] = results.slice(0, 6).map((movie: any) => {
+    const formattedData: FilmBlur[] = results.map((movie: any) => {
       const img = movie.backdrop_path
         ? FILM_IMG_URL(movie.backdrop_path)
         : FILM_PLACEHOLDER_IMAGE;
@@ -219,8 +218,8 @@ export const fetchMoviesUpcoming = async function () {
       }
     });
 
-    return { content: formattedData };
+    return { content: formattedData, totalPages: total_pages };
   } catch (error) {
-    console.log("Fecth movie upcoming have a: ", error);
+    console.log("Fecth movie page upcoming have a: ", error);
   }
 };
