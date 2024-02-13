@@ -1,4 +1,4 @@
-import SeeMoreFilmsGrid from "@/components/SeeMoreFilmsGrid";
+import SeeMoreFilmsGrid from "@/app/(home)/SeeMoreFilmsGrid";
 import { fetchMoviesPageTopRated } from "@/server/actions/movie-seemore-actions";
 
 export default async function page() {

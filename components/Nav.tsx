@@ -48,16 +48,6 @@ export default function Nav() {
             </li>
           </ul>
         </nav>
-
-        <Link href="/" className="relative">
-          <Image
-            src="/assets/avatar.png"
-            width={24}
-            height={24}
-            alt=""
-            className="shadow-light animate-heartbeat rounded-full lg:h-[30px] lg:w-[30px] "
-          />
-        </Link>
       </div>
     </header>
   );

@@ -1,4 +1,4 @@
-import SearchFilmsGrid from "@/components/SearchFilmsGrid";
+import SearchFilmsGrid from "@/app/search/SearchFilmsGrid";
 import { fetchSearchFilms } from "@/server/actions/search-actions";
 
 export default async function page({ params }: { params: { id: string } }) {

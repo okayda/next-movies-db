@@ -6,8 +6,8 @@ import { useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 
-import Error from "./Error";
-import Spinner from "./Spinner";
+import Error from "../../components/Error";
+import Spinner from "../../components/Spinner";
 
 import {
   Pagination,
@@ -18,7 +18,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-
 import { FilmBlur } from "@/lib/type";
 
 const intialPage: number = 1;
@@ -27,25 +26,25 @@ const MOVIE_ICON = "/assets/gray-movies.svg";
 
 const TV_ICON = "/assets/gray-series.svg";
 
-export default function SeeMoreFilmsGrid({
-  isFor,
-  route,
+export default function SearchFilmsGrid({
+  filmName,
   asyncFunc,
 }: {
-  isFor: string;
-  route: string;
-  asyncFunc: (currPage: number) => void;
+  filmName: string;
+  asyncFunc: (filmName: string, currPage: number) => void;
 }) {
   const searchParams = useSearchParams();
 
   const currPage = Number(searchParams.get("page"));
 
   const { data, isLoading, isError }: any = useQuery({
-    queryKey: [route, currPage],
-    queryFn: () => asyncFunc(currPage),
+    queryKey: [filmName, currPage],
+    queryFn: () => asyncFunc(filmName, currPage),
   });
 
+  const searchFilm = filmName.split("%20").join(" ");
   const totalPages = data?.totalPages;
+  const totalResults = data?.totalResults;
 
   if (isError) return <Error className="mt-16" />;
 
@@ -70,9 +69,12 @@ export default function SeeMoreFilmsGrid({
 
   return (
     <div className="pb-[100px]">
-      <div>
-        <h2 className="my-6 text-[20px] font-light text-[#f1f1f1] md:my-8 md:text-[32px]">
-          {route}
+      <div className="pt-8 md:pt-12">
+        <h2 className="my-6 text-[20px] font-light md:my-8 md:text-[32px]">
+          <span className="text-[#c3c3c6]">Found</span>{" "}
+          <span className="text-[#f1f1f1]">{totalResults}</span>{" "}
+          <span className="text-[#c3c3c6]">results for</span>{" "}
+          <span className="text-[#f1f1f1]">"{searchFilm}"</span>
         </h2>
 
         <div className="grid grid-cols-2 gap-3 pb-[60px] xs:grid-cols-3 sm:gap-7 xl:pt-0 xll:grid-cols-4">
@@ -93,13 +95,10 @@ export default function SeeMoreFilmsGrid({
                       alt={film.title}
                       width={400}
                       height={225}
-                      className={clsx(
-                        "object-cover text-[#f1f1f1] lg:h-[160px]",
-                        {
-                          "transition-transform duration-300 hover:scale-110":
-                            film.hasBlur,
-                        },
-                      )}
+                      className={clsx("object-cover text-[#f1f1f1]", {
+                        "transition-transform duration-300 hover:scale-110 lg:h-[160px]":
+                          film.hasBlur,
+                      })}
                       {...(film.hasBlur && {
                         placeholder: "blur",
                         blurDataURL: film.blurredImg,
@@ -115,9 +114,7 @@ export default function SeeMoreFilmsGrid({
                       <span>{film.typeFilm}</span>
                     </div>
                     <h3 className="text-lg">
-                      {film.title.length >= 20
-                        ? film.title.substring(0, 20) + "..."
-                        : film.title}
+                      {film.title.substring(0, 20) + "..."}
                     </h3>
                   </div>
                 </div>
@@ -130,7 +127,7 @@ export default function SeeMoreFilmsGrid({
           <PaginationContent>
             <PaginationItem className="hidden xxs:block">
               <PaginationPrevious
-                href={`/${isFor}/trending/?page=${previousPage()}`}
+                href={`/search/films/${filmName}?page=${previousPage()}`}
                 className={clsx({
                   "pointer-events-none": intialPage === currPage,
                 })}
@@ -139,7 +136,7 @@ export default function SeeMoreFilmsGrid({
 
             <PaginationItem>
               <PaginationLink
-                href={`/${isFor}/trending/?page=${previousPage()}`}
+                href={`/search/films/${filmName}?page=${previousPage()}`}
                 className={clsx({
                   "pointer-events-none text-[#0F172A]": intialPage === currPage,
                 })}
@@ -153,7 +150,7 @@ export default function SeeMoreFilmsGrid({
               <PaginationItem>
                 <PaginationLink
                   className="pointer-events-none text-[#0F172A]"
-                  href={`/${isFor}/trending/?page=${currPage}`}
+                  href={`/search/films/${filmName}?page=${currPage}`}
                   isActive
                 >
                   {currPage}
@@ -161,10 +158,10 @@ export default function SeeMoreFilmsGrid({
               </PaginationItem>
             )}
 
-            {currPage <= totalPages && currPage !== undefined && (
+            {currPage < totalPages && currPage !== undefined && (
               <PaginationItem>
                 <PaginationLink
-                  href={`/${isFor}/trending/?page=${nextPage()}`}
+                  href={`/search/films/${filmName}?page=${nextPage()}`}
                   isActive={currPage >= totalPages}
                 >
                   {nextPage()}
@@ -181,7 +178,7 @@ export default function SeeMoreFilmsGrid({
 
             <PaginationItem className="hidden xxs:block">
               <PaginationNext
-                href={`/${isFor}/trending/?page=${nextPage()}`}
+                href={`/search/films/${filmName}?page=${nextPage()}`}
                 className={clsx({
                   "pointer-events-none": totalPages === currPage,
                 })}
