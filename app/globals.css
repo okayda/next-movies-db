@@ -20,7 +20,10 @@
 
   .loading-spinner {
     color: official;
-    @apply relative inline-block h-[80px] w-[80px];
+    position: relative;
+    display: inline-block;
+    height: 80px;
+    width: 80px;
   }
 
   .loading-spinner div {

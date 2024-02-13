@@ -1,16 +1,18 @@
+import { Suspense } from "react";
+import Loading from "./loading";
 import SeeMoreFilmsGrid from "@/app/(home)/SeeMoreFilmsGrid";
 import { fetchMoviesPageUpcoming } from "@/server/actions/movie-seemore-actions";
 
 export default async function page() {
-  // Error handling & loading is already built into the SeeMoreFilmsGrid component
-
   return (
     <section>
-      <SeeMoreFilmsGrid
-        isFor="movie"
-        route="Upcming"
-        asyncFunc={fetchMoviesPageUpcoming}
-      />
+      <Suspense fallback={<Loading />}>
+        <SeeMoreFilmsGrid
+          isFor="movie"
+          route="Upcming"
+          asyncFunc={fetchMoviesPageUpcoming}
+        />
+      </Suspense>
     </section>
   );
 }
